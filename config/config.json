@@ -1,0 +1,6 @@
+{
+    "log":{
+        "LOG_FILE_PATH":"./log",
+        "LOG_FILE_NAME":"system.log"
+    }
+}
