@@ -18,8 +18,8 @@ var Logger *logrus.Logger
 
 func init() {
 
-	logFilePath := config.Cfg.Log.LOGFILEPATH
-	logFileName := config.Cfg.Log.LOGFILENAME 
+	logFilePath := config.Cfg.Log.LogFilePath
+	logFileName := config.Cfg.Log.LogFileName
 
 	// 日志文件
 	fileName := path.Join(logFilePath, logFileName)

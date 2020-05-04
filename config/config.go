@@ -5,15 +5,31 @@ import (
 	"io/ioutil"
 	"log"
 )
+
 const (
 	Jsonfile = "./config/config.json"
 )
 
 type config struct {
+	Gin struct {
+		IsDebugMode bool   `json:"isDebugMode"`
+		Open        string `json:"open"`
+		Prot        string `json:"prot"`
+	} `json:"gin"`
 	Log struct {
-		LOGFILEPATH string `json:"LOG_FILE_PATH"`
-		LOGFILENAME string `json:"LOG_FILE_NAME"`
+		LogFilePath string `json:"logFilePath"`
+		LogFileName string `json:"logFileName"`
 	} `json:"log"`
+	Sql struct {
+		Mysql struct {
+			DriverName     string `json:"driverName"`
+			DataSourceName string `json:"dataSourceName"`
+		} `json:"mysql"`
+		Sqlist struct {
+			DriverName     string `json:"driverName"`
+			DataSourceName string `json:"dataSourceName"`
+		} `json:"sqlist"`
+	} `json:"sql"`
 }
 
 var Cfg *config

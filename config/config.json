@@ -1,6 +1,21 @@
 {
+    "gin":{
+        "isDebugMode":true,
+        "open":"http://localhost:8080/files",
+        "prot":":8080"
+    },
     "log":{
-        "LOG_FILE_PATH":"./log",
-        "LOG_FILE_NAME":"system.log"
+        "logFilePath":"./log",
+        "logFileName":"system.log"
+    },
+    "sql":{
+        "mysql":{
+            "driverName":"",
+            "dataSourceName":""
+        },
+        "sqlist":{
+            "driverName":"",
+            "dataSourceName":""
+        }
     }
 }
