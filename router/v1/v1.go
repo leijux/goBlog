@@ -1,10 +1,32 @@
 package v1
 
-import "github.com/gin-gonic/gin"
+import (
+	"task-system/apis"
+	"task-system/middleware"
 
-func V1(router *gin.Engine){
-	v1:=router.Group("v1")
+	"github.com/gin-gonic/gin"
+)
+
+func V1(router *gin.Engine) {
+	v1 := router.Group("/v1")
 	{
-		v1.GET("/x",)
+		{ //logn
+			v1.POST("/logn") //注册
+
+			v1.GET("/logn",middleware.AuthMiddleware.LoginHandler) //登入
+		}
+
+		{ //suer
+			v1.DELETE("/user") //删除
+
+			v1.PUT("/user") //更新
+			v1.PATCH("/user")
+
+			v1.GET("/user", middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtToUser())
+		}
+		{ //验证jwt
+			v1.GET("/jwt",middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtOk())//.Use(middleware.AuthMiddleware.MiddlewareFunc())
+		}
+
 	}
 }

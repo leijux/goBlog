@@ -1,7 +1,7 @@
 {
     "gin":{
         "isDebugMode":true,
-        "open":"http://localhost:8080/files",
+        "open":"http://localhost:8080/",
         "prot":":8080"
     },
     "log":{
@@ -10,11 +10,11 @@
     },
     "sql":{
         "mysql":{
-            "driverName":"",
-            "dataSourceName":""
+            "driverName":"mysql",
+            "dataSourceName":"root:123456@tcp(47.101.147.15:3306)/leiju?parseTime=true"
         },
         "sqlist":{
-            "driverName":"",
+            "driverName":"sqlist3",
             "dataSourceName":""
         }
     }

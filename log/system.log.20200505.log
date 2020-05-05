@@ -1,0 +1,714 @@
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 11:23:15"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/long/pwd",
+    "status_code": 404,
+    "time": "2020-05-05 11:26:49"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 11:28:06"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/long?pwd=ssss\u0026emeil=sssss",
+    "status_code": 404,
+    "time": "2020-05-05 11:28:13"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/long?pwd=ssss\u0026emeil=sssss",
+    "status_code": 404,
+    "time": "2020-05-05 11:28:29"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 37,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=ssss\u0026emeil=sssss",
+    "status_code": 200,
+    "time": "2020-05-05 11:28:52"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 11:31:37"
+}
+{
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/models/login/logn.go:17",
+    "func": "task-system/models/login.(*Login).PwdCheck",
+    "level": "error",
+    "msg": "Error 1054: Unknown column 'emile' in 'where clause'",
+    "time": "2020-05-05 11:31:39"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 37,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=ssss\u0026emeil=sssss",
+    "status_code": 401,
+    "time": "2020-05-05 11:31:39"
+}{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 11:33:04"
+}
+{
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/models/login/logn.go:17",
+    "func": "task-system/models/login.(*Login).PwdCheck",
+    "level": "error",
+    "msg": "sql: no rows in result set",
+    "time": "2020-05-05 11:33:07"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 73,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=ssss\u0026emeil=sssss",
+    "status_code": 401,
+    "time": "2020-05-05 11:33:07"
+}
+{
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/models/login/logn.go:17",
+    "func": "task-system/models/login.(*Login).PwdCheck",
+    "level": "error",
+    "msg": "sql: no rows in result set",
+    "time": "2020-05-05 11:33:09"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 72,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=ssss\u0026emeil=sssss",
+    "status_code": 401,
+    "time": "2020-05-05 11:33:09"
+}{
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/models/login/logn.go:17",
+    "func": "task-system/models/login.(*Login).PwdCheck",
+    "level": "error",
+    "msg": "sql: no rows in result set",
+    "time": "2020-05-05 11:34:04"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 72,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=ssss\u0026emeil=sssss",
+    "status_code": 401,
+    "time": "2020-05-05 11:34:04"
+}{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 73,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 11:35:46"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 72,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 11:44:13"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 72,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 11:45:52"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 11:58:53"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 74,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 11:59:14"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 200,
+    "time": "2020-05-05 11:59:54"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 401,
+    "time": "2020-05-05 12:00:14"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 200,
+    "time": "2020-05-05 12:00:24"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 401,
+    "time": "2020-05-05 12:00:28"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 401,
+    "time": "2020-05-05 12:00:59"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 401,
+    "time": "2020-05-05 12:01:07"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:26:29"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 75,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 13:26:34"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/user",
+    "status_code": 200,
+    "time": "2020-05-05 13:26:57"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/user",
+    "status_code": 200,
+    "time": "2020-05-05 13:27:04"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:31:27"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 75,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 13:31:34"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:38:27"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 403,
+    "time": "2020-05-05 13:38:40"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 72,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 13:38:49"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 403,
+    "time": "2020-05-05 13:38:58"
+}{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 70,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 13:41:01"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 403,
+    "time": "2020-05-05 13:41:13"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 403,
+    "time": "2020-05-05 13:41:16"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:42:53"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 78,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 13:43:06"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:48:22"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 76,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 13:48:24"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:50:53"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:52:17"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/",
+    "status_code": 404,
+    "time": "2020-05-05 13:55:33"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 403,
+    "time": "2020-05-05 13:55:41"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 76,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com",
+    "status_code": 200,
+    "time": "2020-05-05 13:55:55"
+}
+{
+    "client_ip": "::1",
+    "file": "e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48",
+    "func": "task-system/middleware.LoggerToFile.func1",
+    "latency_time": 0,
+    "level": "info",
+    "msg": "",
+    "req_method": "GET",
+    "req_uri": "/v1/jwt",
+    "status_code": 403,
+    "time": "2020-05-05 13:56:07"
+}{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 13:57:30"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":90,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 13:57:35"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 13:57:38"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 13:59:18"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 13:59:22"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":76,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 13:59:25"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 13:59:37"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 14:04:19"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:04:21"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:04:26"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":71,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:04:36"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:04:48"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:04:49"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 14:09:45"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":74,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:09:52"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":1,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:09:54"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:09:55"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:09:56"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 14:20:28"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"POST","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:20:46"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:20:54"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:20:56"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:21:05"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:21:09"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 14:23:58"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":71,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:24:00"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:24:02"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:24:32"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 14:25:24"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:25:27"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 14:25:29"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":85,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 14:25:38"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 14:55:52"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 14:55:55"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 15:57:40"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 15:57:58"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":74,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 15:58:00"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 15:58:04"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 15:58:08"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 15:58:08"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 15:58:57"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 15:58:59"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 15:58:59"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 15:59:02"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":73,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 15:59:05"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 15:59:16"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":404,"time":"2020-05-05 16:00:12"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:00:21"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:00:32"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:00:32"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:00:35"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:00:35"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:00:38"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":73,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 16:00:41"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:01:09"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:01:09"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:01:10"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:01:10"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:01:14"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:01:14"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:01:20"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:01:21"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:01:34"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:01:34"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":401,"time":"2020-05-05 16:02:55"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:03:15"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:03:15"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":74,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 16:03:21"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:47","func":"task-system/middleware.init.0.func2","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 16:15:32"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":104,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 16:15:32"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":401,"time":"2020-05-05 16:16:59"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:57","func":"task-system/middleware.init.0.func3","level":"info","msg":"test 2","time":"2020-05-05 16:17:35"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 16:17:35"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"DELETE","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:24:51"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:24:55"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:24:55"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:25:55"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":17,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:25:55"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:19","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u003cnil\u003e","time":"2020-05-05 16:26:00"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":200,"time":"2020-05-05 16:26:00"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:57","func":"task-system/middleware.init.0.func3","level":"info","msg":"test 2","time":"2020-05-05 16:26:04"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 16:26:04"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:47","func":"task-system/middleware.init.0.func2","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 16:26:07"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":152,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 16:26:07"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":401,"time":"2020-05-05 16:31:22"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:31:27"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:57","func":"task-system/middleware.init.0.func3","level":"info","msg":"test 2","time":"2020-05-05 16:34:26"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":16,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 16:34:26"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:57","func":"task-system/middleware.init.0.func3","level":"info","msg":"test 2","time":"2020-05-05 16:34:41"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":403,"time":"2020-05-05 16:34:41"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:57","func":"task-system/middleware.init.0.func3","level":"info","msg":"test 2","time":"2020-05-05 16:35:56"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":403,"time":"2020-05-05 16:35:56"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":401,"time":"2020-05-05 16:37:59"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:57","func":"task-system/middleware.init.0.func3","level":"info","msg":"test 2","time":"2020-05-05 16:38:07"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/user","status_code":403,"time":"2020-05-05 16:38:07"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:47","func":"task-system/middleware.init.0.func3","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 16:40:14"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":74,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 16:40:14"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:47","func":"task-system/middleware.init.0.func3","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 16:42:22"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":76,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 16:42:22"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:54","func":"task-system/middleware.init.0.func4","level":"info","msg":"test 1","time":"2020-05-05 16:42:37"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:42:37"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:54","func":"task-system/middleware.init.0.func4","level":"info","msg":"test 1","time":"2020-05-05 16:42:44"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":1,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":401,"time":"2020-05-05 16:42:56"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":401,"time":"2020-05-05 16:48:10"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:47","func":"task-system/middleware.init.0.func3","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 16:48:14"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":74,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 16:48:14"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:54","func":"task-system/middleware.init.0.func4","level":"info","msg":"test 1","time":"2020-05-05 16:48:26"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 16:48:26"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:54","func":"task-system/middleware.init.0.func4","level":"info","msg":"test 1","time":"2020-05-05 16:48:32"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:54","func":"task-system/middleware.init.0.func4","level":"info","msg":"test 1","time":"2020-05-05 16:48:34"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:45","func":"task-system/middleware.init.0.func3","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 17:08:14"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":103,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 17:08:14"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:46","func":"task-system/middleware.init.0.func3","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 17:10:32"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":91,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 17:10:32"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:46","func":"task-system/middleware.init.0.func3","level":"info","msg":"{4 leiju leiju@outlook.com   2020-05-05 00:41:13 +0000 UTC 2020-05-05 00:41:13 +0000 UTC 0}","time":"2020-05-05 17:13:28"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":90,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 17:13:28"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":104,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 17:51:48"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:36","func":"task-system/middleware.init.0.func2","level":"info","msg":"test1","time":"2020-05-05 18:02:47"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:38","func":"task-system/middleware.init.0.func2","level":"info","msg":"test2","time":"2020-05-05 18:02:47"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:36","func":"task-system/middleware.init.0.func2","level":"info","msg":"test1","time":"2020-05-05 18:12:51"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:38","func":"task-system/middleware.init.0.func2","level":"info","msg":"test2 map[authority:0 avatar: created:2020-05-05T00:41:13Z emeil:leiju@outlook.com id:4 name:leiju password: updated:2020-05-05T00:41:13Z]","time":"2020-05-05 18:12:51"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:36","func":"task-system/middleware.init.0.func2","level":"info","msg":"test1","time":"2020-05-05 18:26:08"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:38","func":"task-system/middleware.init.0.func2","level":"info","msg":"test2 map[authority:0 avatar: created:2020-05-05T00:41:13Z emeil:leiju@outlook.com id:4 name:leiju password: updated:2020-05-05T00:41:13Z]","time":"2020-05-05 18:26:08"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:36","func":"task-system/middleware.init.0.func2","level":"info","msg":"test1","time":"2020-05-05 18:38:25"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/gin-jwt.go:38","func":"task-system/middleware.init.0.func2","level":"info","msg":"test2 map[authority:0 avatar: created:2020-05-05T00:41:13Z emeil:leiju@outlook.com id:4 name:leiju password: updated:2020-05-05T00:41:13Z]","time":"2020-05-05 18:38:25"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":82,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 19:34:58"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 19:36:34"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":90,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 20:10:10"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 20:10:21"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 20:11:19"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":74,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 20:16:16"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 20:16:25"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":93,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 21:03:05"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 21:03:18"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 21:04:27"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 21:04:28"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":114,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/logn?pwd=12345678\u0026emeil=leiju@outlook.com","status_code":200,"time":"2020-05-05 21:08:33"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/middleware/logToFile.go:48","func":"task-system/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/v1/jwt","status_code":200,"time":"2020-05-05 21:08:43"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/apis/jwt_api.go:18","func":"task-system/apis.JwtToUser.func1","level":"info","msg":"\u0026{0 leiju leiju@outlook.com   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC 0}","time":"2020-05-05 21:08:47"}
