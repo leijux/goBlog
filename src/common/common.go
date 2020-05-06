@@ -56,3 +56,11 @@ func Run(router *gin.Engine, prot string) {
 	}
 	log.Logger.Println("Server exiting")
 }
+
+func Rmsg(c *gin.Context,code int,msg string ,data interface{}){
+	c.JSON(code, gin.H{
+		"code": http.StatusOK,
+		"msg":  msg,
+		"data": data,
+	})
+}

@@ -11,33 +11,31 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func JwtToUser() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		u, ok := c.Get(middleware.AuthMiddleware.IdentityKey)
-		if ok {
-			msg := fmt.Sprintln("User does not exist")
-			log.Logger.Info(msg)
-			c.JSON(http.StatusOK, gin.H{
-				"code": http.StatusOK,
-				"msg":  msg,
-				"data": false,
-			})
-			return
-		}
+//JwtToUserAPI 解析jwt里的数据
+func JwtToUserAPI(c *gin.Context) {
+	u, ok := c.Get(middleware.AuthMiddleware.IdentityKey)
+	if ok {
+		msg := fmt.Sprintln("User does not exist")
+		log.Logger.Info(msg)
 		c.JSON(http.StatusOK, gin.H{
 			"code": http.StatusOK,
-			"msg":  nil,
-			"data": u,
+			"msg":  msg,
+			"data": false,
 		})
+		return
 	}
+	c.JSON(http.StatusOK, gin.H{
+		"code": http.StatusOK,
+		"msg":  nil,
+		"data": u,
+	})
 }
 
-func JwtOk() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"code":http.StatusOK,
-			"msg": "jwtOK",
-			"data":true,
-		})
-	}
+//JwtOkAPI 测试jwt功能
+func JwtOkAPI(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"code": http.StatusOK,
+		"msg":  "jwtOK",
+		"data": true,
+	})
 }

@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"task-system/log"
-	"task-system/models/login"
+	"task-system/models/logn"
 	"task-system/models/user"
 
 	jwt "github.com/appleboy/gin-jwt/v2"

@@ -13,7 +13,7 @@ func V1(router *gin.Engine) {
 		v1.GET("/")
 		
 		{ //logn
-			v1.POST("/logn") //注册
+			v1.POST("/logn",apis.AddUserAPI) //注册
 
 			v1.GET("/logn",middleware.AuthMiddleware.LoginHandler) //登入
 		}
@@ -24,10 +24,10 @@ func V1(router *gin.Engine) {
 			v1.PUT("/user") //更新
 			v1.PATCH("/user")
 
-			v1.GET("/user", middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtToUser())
+			v1.GET("/user", middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtToUserAPI)
 		}
 		{ //验证jwt
-			v1.GET("/jwt",middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtOk())//.Use(middleware.AuthMiddleware.MiddlewareFunc())
+			v1.GET("/jwt",middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtOkAPI)//.Use(middleware.AuthMiddleware.MiddlewareFunc())
 		
 		}
 
