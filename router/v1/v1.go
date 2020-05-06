@@ -10,6 +10,8 @@ import (
 func V1(router *gin.Engine) {
 	v1 := router.Group("/v1")
 	{
+		v1.GET("/")
+		
 		{ //logn
 			v1.POST("/logn") //注册
 
@@ -26,6 +28,7 @@ func V1(router *gin.Engine) {
 		}
 		{ //验证jwt
 			v1.GET("/jwt",middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtOk())//.Use(middleware.AuthMiddleware.MiddlewareFunc())
+		
 		}
 
 	}

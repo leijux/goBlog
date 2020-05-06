@@ -8,6 +8,8 @@ import (
 
 const (
 	Jsonfile = "./config/config.json"
+	Mysql    = "mysql"
+	Sqlite   = "sqlite"
 )
 
 type config struct {
@@ -20,16 +22,21 @@ type config struct {
 		LogFilePath string `json:"logFilePath"`
 		LogFileName string `json:"logFileName"`
 	} `json:"log"`
-	Sql struct {
-		Mysql struct {
+	Database struct {
+		Enable string `json:"enable"`
+		Mysql  struct {
 			DriverName     string `json:"driverName"`
 			DataSourceName string `json:"dataSourceName"`
 		} `json:"mysql"`
-		Sqlist struct {
+		Sqlite struct {
 			DriverName     string `json:"driverName"`
 			DataSourceName string `json:"dataSourceName"`
-		} `json:"sqlist"`
-	} `json:"sql"`
+		} `json:"sqlite"`
+		Redis struct {
+			Addr     string `json:"Addr"`
+			Password string `json:"Password"`
+		} `json:"redis"`
+	} `json:"database"`
 }
 
 var Cfg *config

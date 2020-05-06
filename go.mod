@@ -4,7 +4,6 @@ go 1.14
 
 require (
 	github.com/DeanThompson/ginpprof v0.0.0-20190408063150-3be636683586
-	github.com/appleboy/gin-jwt v2.5.0+incompatible
 	github.com/appleboy/gin-jwt/v2 v2.6.3
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
 	github.com/gin-gonic/gin v1.6.3
@@ -22,6 +21,5 @@ require (
 	github.com/sirupsen/logrus v1.6.0
 	github.com/stretchr/testify v1.4.0
 	github.com/tebeka/strftime v0.1.4 // indirect
-	gopkg.in/dgrijalva/jwt-go.v3 v3.2.0 // indirect
 	xorm.io/xorm v1.0.1
 )

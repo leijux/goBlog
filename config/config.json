@@ -8,14 +8,19 @@
         "logFilePath":"./log",
         "logFileName":"system.log"
     },
-    "sql":{
+    "database":{
+        "enable":"mysql",
         "mysql":{
             "driverName":"mysql",
             "dataSourceName":"root:123456@tcp(47.101.147.15:3306)/leiju?parseTime=true"
         },
-        "sqlist":{
-            "driverName":"sqlist3",
+        "sqlite":{
+            "driverName":"sqlite3",
             "dataSourceName":""
+        },
+        "redis":{
+            "Addr":"47.101.147.15:6379",
+            "Password":""
         }
     }
 }

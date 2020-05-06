@@ -3,7 +3,7 @@ package user
 import (
 	"time"
 
-	"task-system/database/mysql"
+	"task-system/database"
 	"task-system/log"
 )
 
@@ -19,7 +19,7 @@ type User struct {
 }
 
 func (user *User) AddUser() (id int64, err error) {
-	res, err := mysql.Db.NamedExec("insert into user values(:name,:emeil,:password,:avatar,:creaTime,:authority)", user)
+	res, err :=database.Db.NamedExec("insert into user values(:name,:emeil,:password,:avatar,:creaTime,:authority)", user)
 	if err != nil {
 		log.Logger.Errorln(err)
 		return 0, err
@@ -41,7 +41,7 @@ func (u *User) UpUser() (err error) {
 }
 
 func (user *User) GetUser(emeil string) (err error) {
-	err = mysql.Db.Get(&user, "select * from user where emeil=?", user.Emeil)
+	err = database.Db.Get(&user, "select * from user where emeil=?", user.Emeil)
 	if err != nil {
 		log.Logger.Errorln(err)
 		return err

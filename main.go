@@ -2,7 +2,7 @@ package main
 
 import (
 	"task-system/config"
-	"task-system/database/mysql"
+	"task-system/database"
 	"task-system/router"
 	"task-system/src/common"
 
@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	defer mysql.Db.Close()
+	defer database.Db.Close()
 	r := gin.New()
 	gin.DisableConsoleColor() //静止控制台颜色，防止有空格
 	router.InitRouter(r)

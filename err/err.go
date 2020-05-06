@@ -3,5 +3,5 @@ package err
 import "errors"
 
 var (
-	xxx error = errors.New("sss")
+	ErrEnableValue error = errors.New("Set the correct enable value")
 )
