@@ -1,0 +1,3 @@
+{"file":"E:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/src/common/common.go:50","func":"task-system/src/common.Run","level":"info","msg":"Shutdown Server ...","time":"2020-05-04 15:40:48"}
+{"file":"E:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/src/common/common.go:57","func":"task-system/src/common.Run","level":"info","msg":"Server exiting","time":"2020-05-04 15:40:48"}
+{"file":"e:/OneDrive/learning/program/Go/myGoProjects/TaskDistributionSystem/database/mysql/mysql.go:18","func":"task-system/database/mysql.init.0","level":"fatal","msg":"Error 1045: Access denied for user 'root'@'27.38.40.62' (using password: NO)","time":"2020-05-04 15:47:39"}

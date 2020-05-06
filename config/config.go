@@ -35,6 +35,7 @@ type config struct {
 		Redis struct {
 			Addr     string `json:"Addr"`
 			Password string `json:"Password"`
+			Db       int `json:"DB"`
 		} `json:"redis"`
 	} `json:"database"`
 }
