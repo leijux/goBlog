@@ -1,14 +1,18 @@
 package config
 
 import (
+	myerr "task-system/err"
 	"encoding/json"
 	"io/ioutil"
 	"log"
 )
 
 const (
+	//Jsonfile 文件路径
 	Jsonfile = "./config/config.json"
+	//Mysql 字段
 	Mysql    = "mysql"
+	//Sqlite 字段
 	Sqlite   = "sqlite"
 )
 
@@ -39,13 +43,13 @@ type config struct {
 		} `json:"redis"`
 	} `json:"database"`
 }
-
+//Cfg 配置文件对象
 var Cfg *config
 
 func init() {
 	f, err := ioutil.ReadFile(Jsonfile)
 	if err != nil {
-		log.Fatalln(err, "ioutil.ReadFile")
+		log.Fatalln(myerr.ErrOpenFile,err)
 	}
 	err = json.Unmarshal(f, &Cfg)
 	if err != nil {

@@ -21,5 +21,5 @@ func main() {
 	} else {
 		gin.SetMode(gin.ReleaseMode) //发布模式
 	}
-	common.Run(r, config.Cfg.Gin.Prot)
+	common.Run(r)
 }

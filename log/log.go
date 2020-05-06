@@ -17,7 +17,6 @@ import (
 var Logger *logrus.Logger
 
 func init() {
-
 	logFilePath := config.Cfg.Log.LogFilePath
 	logFileName := config.Cfg.Log.LogFileName
 

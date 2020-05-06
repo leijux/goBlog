@@ -10,11 +10,13 @@ import (
 	"runtime"
 	"time"
 
+	"task-system/config"
 	"task-system/log"
 
 	"github.com/gin-gonic/gin"
 )
 
+//Open 用默认程序打开文件或者网站
 func Open(file string) (err error) {
 	switch runtime.GOOS {
 	case "linux":
@@ -29,9 +31,10 @@ func Open(file string) (err error) {
 	return
 }
 
-func Run(router *gin.Engine, prot string) {
+//Run 运行服务
+func Run(router *gin.Engine) {
 	srv := &http.Server{
-		Addr:    prot,
+		Addr:    config.Cfg.Gin.Prot,
 		Handler: router,
 	}
 
@@ -39,7 +42,6 @@ func Run(router *gin.Engine, prot string) {
 		// 服务连接
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Logger.Fatalf("listen: %s\n", err)
-
 		}
 	}()
 
@@ -47,20 +49,23 @@ func Run(router *gin.Engine, prot string) {
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	log.Logger.Println("Shutdown Server ...")
+	log.Logger.Infoln("Shutdown Server ...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Logger.Fatal("Server Shutdown:", err)
 	}
-	log.Logger.Println("Server exiting")
+	log.Logger.Infoln("Server exiting")
 }
 
-func Rmsg(c *gin.Context,code int,msg string ,data interface{}){
-	c.JSON(code, gin.H{
+//Rmsg 返回请求
+func Rmsg(c *gin.Context, code int, msg string, data interface{}) {
+	json := gin.H{
 		"code": http.StatusOK,
 		"msg":  msg,
 		"data": data,
-	})
+	}
+	log.Logger.Infoln(json)
+	c.JSON(code, json)
 }

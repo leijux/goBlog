@@ -7,7 +7,7 @@ import (
 	"github.com/go-redis/redis/v7"
 	"github.com/sirupsen/logrus"
 )
-
+//Redisdb Redis缓存库链接对象
 var Redisdb *redis.Client
 
 // 初始化连接
@@ -28,5 +28,5 @@ func init() {
 	log.Logger.WithFields(logrus.Fields{
 		"pong": pong,
 		"err":  err,
-	})
+	}).Infoln()
 }

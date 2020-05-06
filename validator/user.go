@@ -1,0 +1,6 @@
+package validator
+
+
+func Vuser(){
+
+}

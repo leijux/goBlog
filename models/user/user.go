@@ -4,8 +4,10 @@ import (
 	"time"
 
 	"task-system/database"
+	"task-system/database/cache"
 	"task-system/log"
 )
+
 //User 用户结构体
 type User struct {
 	ID        int       `xorm:"pk autoincr" db:"id" json:"id"`
@@ -17,23 +19,31 @@ type User struct {
 	Updated   time.Time `xorm:"updated"                                                      db:"updated"    json:"updated"       form:"updated"`
 	Authority int       `xorm:"int(1) not null 'authority' comment('权限')"                   db:"authority"  json:"authority"     form:"authority"  binding:"required"`
 }
+
 //AddUser 添加用户
 func (user *User) AddUser() (id int64, err error) {
-	res, err :=database.Db.NamedExec("insert into user(name,emeil,password,avatar,created,authority) values(:name,:emeil,:password,:avatar,:created,:authority)", user)
+	res, err := database.Db.NamedExec("insert into user(name,emeil,password,avatar,created,authority) values(:name,:emeil,:password,:avatar,:created,:authority)", user)
 	if err != nil {
 		log.Logger.Errorln(err)
-		return 0, err
+		return
 	}
 	id, err = res.LastInsertId()
 	if err != nil {
 		log.Logger.Errorln(err)
-		return 0, err
+		return
 	}
 	return
 }
-//DelUser 删除用户
-func (user *User) DelUser() (err error) {
-	return nil
+
+//DelUser 删除用户 *权限管理
+func (user *User) DelUser() (l int64, err error) {
+	res, err := database.Db.Exec("delete form user where emeil=?", user.Emeil)
+	if err != nil {
+		log.Logger.Errorln(err)
+		return
+	}
+	l, err = res.RowsAffected()
+	return
 }
 
 //UpUser 更新用户数据
@@ -43,13 +53,16 @@ func (user *User) UpUser() (err error) {
 
 //GetUser 得到用户数据
 func (user *User) GetUser(emeil string) (err error) {
+	//cache.Redisdb.Get(user.Emeil).Result()
 	err = database.Db.Get(&user, "select * from user where emeil=?", user.Emeil)
 	if err != nil {
 		log.Logger.Errorln(err)
 		return err
 	}
+	cache.Redisdb.Set(user.Emeil, user, 1*time.Hour)
 	return nil
 }
+
 //GetUsers 得到全部的用户数据
 func (user *User) GetUsers() (users []User, err error) {
 	return nil, nil

@@ -17,7 +17,7 @@ func AddUserAPI(c *gin.Context) {
 	var u user.User
 	err := c.Bind(&u)
 	if err != nil {
-		msg := fmt.Sprintf("shoul bind err: %s", err.Error())
+		msg := fmt.Sprintln("shoul bind err")
 		log.Logger.Errorln(err)
 		common.Rmsg(c, http.StatusOK, msg, false)
 		return
@@ -26,13 +26,12 @@ func AddUserAPI(c *gin.Context) {
 	u.Created = time.Now()
 	id, err := u.AddUser()
 	if err != nil {
-		msg := fmt.Sprintf("add user err: %s", err.Error())
+		msg := fmt.Sprintln("add user err")
 		log.Logger.Errorln(err)
 		common.Rmsg(c, http.StatusOK, msg, false)
 		return
 	}
 
-	msg := fmt.Sprintf("add user id: %v", id)
-	log.Logger.Debug(id)
+	msg := fmt.Sprintf("add user id")
 	common.Rmsg(c, http.StatusOK, msg, id)
 }

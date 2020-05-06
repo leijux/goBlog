@@ -8,17 +8,20 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
-
+//Db 数据库链接对象
 var Db *sqlx.DB
 
 func init() {
 	var err error
-
 	switch config.Cfg.Database.Enable {
 	case config.Mysql:
-		Db, err = sqlx.Connect(config.Cfg.Database.Mysql.DriverName, config.Cfg.Database.Mysql.DataSourceName)
+		DriverName := config.Cfg.Database.Mysql.DriverName
+		DataSourceName := config.Cfg.Database.Mysql.DataSourceName
+		Db, err = sqlx.Connect(DriverName, DataSourceName)
 	case config.Sqlite:
-		Db, err = sqlx.Connect(config.Cfg.Database.Sqlite.DriverName, config.Cfg.Database.Sqlite.DataSourceName)
+		DriverName := config.Cfg.Database.Sqlite.DriverName
+		DataSourceName := config.Cfg.Database.Sqlite.DataSourceName
+		Db, err = sqlx.Connect(DriverName, DataSourceName)
 	default:
 		log.Logger.Fatalln(myerr.ErrEnableValue)
 	}
