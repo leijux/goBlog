@@ -14,6 +14,7 @@ import (
 	"task-system/log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 //Open 用默认程序打开文件或者网站
@@ -66,6 +67,6 @@ func Rmsg(c *gin.Context, code int, msg string, data interface{}) {
 		"msg":  msg,
 		"data": data,
 	}
-	log.Logger.Infoln(json)
+	log.Logger.WithFields(logrus.Fields(json)).Infoln()
 	c.JSON(code, json)
 }

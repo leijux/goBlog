@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"task-system/middleware"
+	"task-system/models/user"
 	"task-system/src/common"
 
 	//jwt "github.com/appleboy/gin-jwt/v2"
@@ -24,6 +25,9 @@ func JwtToUserAPI(c *gin.Context) {
 
 //JwtOkAPI 测试jwt功能
 func JwtOkAPI(c *gin.Context) {
+	u:=new(user.User)
+	u.Emeil = "leiju@outlook.com"
+	u.GetUser()
 	msg := "JwtOK"
-	common.Rmsg(c, http.StatusOK, msg, true)
+	common.Rmsg(c, http.StatusOK, msg, u)
 }

@@ -5,7 +5,10 @@ import (
 
 	"task-system/database"
 	"task-system/database/cache"
+	myerr "task-system/err"
 	"task-system/log"
+
+	"github.com/go-redis/redis/v7"
 )
 
 //User 用户结构体
@@ -52,18 +55,36 @@ func (user *User) UpUser() (err error) {
 }
 
 //GetUser 得到用户数据
-func (user *User) GetUser(emeil string) (err error) {
-	//cache.Redisdb.Get(user.Emeil).Result()
-	err = database.Db.Get(&user, "select * from user where emeil=?", user.Emeil)
-	if err != nil {
-		log.Logger.Errorln(err)
-		return err
+func (user *User) GetUser() (err error) {
+	if user.Emeil == "" {
+		return myerr.ErrStringIsEmpty
 	}
-	cache.Redisdb.Set(user.Emeil, user, 1*time.Hour)
-	return nil
+
+	res, Rederr := cache.Redisdb.Get(user.Emeil).Result()
+	if Rederr == redis.Nil {
+		log.Logger.Errorln(Rederr)
+		err = database.Db.Get(user, "select * from user where emeil=?", user.Emeil)
+		if err != nil {
+			log.Logger.Errorln(err)
+			return
+		}
+		err = cache.Redisdb.Set(user.Emeil, user.Name, 1*time.Hour).Err()
+		return
+	}
+	log.Logger.Println(res)
+	return
 }
 
 //GetUsers 得到全部的用户数据
 func (user *User) GetUsers() (users []User, err error) {
 	return nil, nil
+}
+
+
+func (user *User) toString() (j string){
+return ""
+}
+
+func(user *User) toxxx() {
+
 }
