@@ -37,9 +37,10 @@ type config struct {
 			DataSourceName string `json:"dataSourceName"`
 		} `json:"sqlite"`
 		Redis struct {
-			Addr     string `json:"Addr"`
-			Password string `json:"Password"`
-			Db       int `json:"DB"`
+			IsOpen bool `json:"isOpen"`
+			Addr     string `json:"addr"`
+			Password string `json:"password"`
+			Db       int `json:"db"`
 		} `json:"redis"`
 	} `json:"database"`
 }
@@ -52,7 +53,12 @@ func init() {
 		log.Fatalln(myerr.ErrOpenFile,err)
 	}
 	err = json.Unmarshal(f, &Cfg)
+	
 	if err != nil {
 		log.Fatalln(err)
 	}
 }
+
+// func Save(){
+
+// }

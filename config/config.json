@@ -19,9 +19,10 @@
             "dataSourceName": ""
         },
         "redis": {
-            "Addr": "47.101.147.15:6379",
-            "Password": "",
-            "DB": 0
+            "isOpen":true,
+            "addr": "47.101.147.15:6379",
+            "password": "",
+            "db": 0
         }
     }
 }

@@ -1,12 +1,14 @@
 package user
 
 import (
+	"encoding/json"
 	"time"
 
 	"task-system/database"
 	"task-system/database/cache"
 	myerr "task-system/err"
 	"task-system/log"
+	"task-system/models"
 
 	"github.com/go-redis/redis/v7"
 )
@@ -22,6 +24,8 @@ type User struct {
 	Updated   time.Time `xorm:"updated"                                                      db:"updated"    json:"updated"       form:"updated"`
 	Authority int       `xorm:"int(1) not null 'authority' comment('权限')"                   db:"authority"  json:"authority"     form:"authority"  binding:"required"`
 }
+
+var _ models.IModels = &User{}
 
 //AddUser 添加用户
 func (user *User) AddUser() (id int64, err error) {
@@ -60,18 +64,19 @@ func (user *User) GetUser() (err error) {
 		return myerr.ErrStringIsEmpty
 	}
 
-	res, Rederr := cache.Redisdb.Get(user.Emeil).Result()
-	if Rederr == redis.Nil {
+	res, Rederr := cache.Get(user.Emeil)
+	if Rederr == redis.Nil || Rederr == cache.ErrRedisOff { //判断是否是空的
 		log.Logger.Errorln(Rederr)
 		err = database.Db.Get(user, "select * from user where emeil=?", user.Emeil)
 		if err != nil {
 			log.Logger.Errorln(err)
 			return
 		}
-		err = cache.Redisdb.Set(user.Emeil, user.Name, 1*time.Hour).Err()
+		err = cache.Set(user.Emeil, user, 1*time.Hour) //写入缓存
 		return
 	}
-	log.Logger.Println(res)
+	user.FromJSON(res)
+	log.Logger.Infoln(res, "缓存读取成功")
 	return
 }
 
@@ -80,11 +85,21 @@ func (user *User) GetUsers() (users []User, err error) {
 	return nil, nil
 }
 
-
-func (user *User) toString() (j string){
-return ""
+//ToJSON ...
+func (user *User) ToJSON() string {
+	j, err := json.Marshal(user)
+	if err != nil {
+		log.Logger.Debugln(err)
+		return ""
+	}
+	return string(j)
 }
 
-func(user *User) toxxx() {
-
+func (user *User) FromJSON(data string) {
+	err := json.Unmarshal([]byte(data), user)
+	if err != nil {
+		log.Logger.Debugln(err)
+		return
+	}
+	return
 }

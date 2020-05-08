@@ -10,7 +10,7 @@ import (
 func V1(router *gin.Engine) {
 	v1 := router.Group("/v1")
 	{
-		v1.GET("/")
+		
 		
 		{ //logn
 			v1.POST("/logn",apis.AddUserAPI) //注册

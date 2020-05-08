@@ -6,7 +6,6 @@ import (
 
 	"task-system/config"
 	"task-system/database"
-	"task-system/database/cache"
 	"task-system/models/user"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -42,7 +41,7 @@ func Test_createTable(t *testing.T) {
 	// }
 }
 
-func Test_Redis(t *testing.T) {
-	s := cache.Redisdb.Ping().String()
-	log.Println(s)
-}
+// func Test_Redis(t *testing.T) {
+// 	s := cache.Redisdb.Ping().String()
+// 	log.Println(s)
+// }

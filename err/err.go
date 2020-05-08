@@ -9,4 +9,5 @@ var (
 	ErrOpenFile error = errors.New("open err")
 	//ErrStringIsEmpty  empty
 	ErrStringIsEmpty error = errors.New("string is empty")
+	
 )
