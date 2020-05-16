@@ -9,7 +9,7 @@ import (
 )
 
 func InitRouter(router *gin.Engine) {
-	router.Use(gin.Recovery(), middleware.LoggerToFile())
+	router.Use(gin.Recovery(), middleware.LoggerToFile(),middleware.Cors())
 	router.Static("/files", "./web")
 	router.GET("/", apis.Index)
 	v1.V1(router)

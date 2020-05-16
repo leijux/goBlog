@@ -10,12 +10,11 @@ import (
 func V1(router *gin.Engine) {
 	v1 := router.Group("/v1")
 	{
-		
-		
-		{ //logn
-			v1.POST("/logn",apis.AddUserAPI) //注册
 
-			v1.GET("/logn",middleware.AuthMiddleware.LoginHandler) //登入
+		{ //logn
+			v1.POST("/logn", apis.AddUserAPI) //注册
+
+			v1.GET("/logn", middleware.AuthMiddleware.LoginHandler) //登入
 		}
 
 		{ //suer
@@ -24,12 +23,15 @@ func V1(router *gin.Engine) {
 			v1.PUT("/user") //更新
 			v1.PATCH("/user")
 
-			v1.GET("/user", middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtToUserAPI)
+			v1.GET("/user", middleware.AuthMiddleware.MiddlewareFunc(), apis.JwtToUserAPI)
 		}
 		{ //验证jwt
-			v1.GET("/jwt",middleware.AuthMiddleware.MiddlewareFunc(),apis.JwtOkAPI)//.Use(middleware.AuthMiddleware.MiddlewareFunc())
-		
+			v1.GET("/jwt", middleware.AuthMiddleware.MiddlewareFunc(), apis.JwtOkAPI) //.Use(middleware.AuthMiddleware.MiddlewareFunc())
+
 		}
 
+		{ //blog
+			v1.POST("/blog", middleware.AuthMiddleware.MiddlewareFunc(), apis.AddBlogAPI)
+		}
 	}
 }

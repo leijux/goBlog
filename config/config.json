@@ -2,7 +2,7 @@
     "gin": {
         "isDebugMode": true,
         "open": "http://localhost:8080/",
-        "prot": ":8080"
+        "prot": ":8000"
     },
     "log": {
         "logFilePath": "./log/gin_log",

@@ -1,19 +1,19 @@
 package config
 
 import (
-	myerr "task-system/err"
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	myerr "task-system/err"
 )
 
 const (
 	//Jsonfile 文件路径
 	Jsonfile = "./config/config.json"
 	//Mysql 字段
-	Mysql    = "mysql"
+	Mysql = "mysql"
 	//Sqlite 字段
-	Sqlite   = "sqlite"
+	Sqlite = "sqlite"
 )
 
 type config struct {
@@ -37,23 +37,24 @@ type config struct {
 			DataSourceName string `json:"dataSourceName"`
 		} `json:"sqlite"`
 		Redis struct {
-			IsOpen bool `json:"isOpen"`
+			IsOpen   bool   `json:"isOpen"`
 			Addr     string `json:"addr"`
 			Password string `json:"password"`
-			Db       int `json:"db"`
+			Db       int    `json:"db"`
 		} `json:"redis"`
 	} `json:"database"`
 }
+
 //Cfg 配置文件对象
 var Cfg *config
 
 func init() {
 	f, err := ioutil.ReadFile(Jsonfile)
 	if err != nil {
-		log.Fatalln(myerr.ErrOpenFile,err)
+		log.Fatalln(myerr.ErrOpenFile, err)
 	}
 	err = json.Unmarshal(f, &Cfg)
-	
+
 	if err != nil {
 		log.Fatalln(err)
 	}

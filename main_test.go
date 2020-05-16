@@ -2,11 +2,13 @@ package main
 
 import (
 	"log"
+	"os"
+	"os/exec"
 	"testing"
 
 	"task-system/config"
 	"task-system/database"
-	"task-system/models/user"
+	"task-system/models/blog"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/stretchr/testify/assert"
@@ -25,7 +27,7 @@ func Test_createTable(t *testing.T) {
 	if err != nil {
 		log.Println(err)
 	}
-	err = engine.Sync2(new(user.User))
+	err = engine.Sync2(new(blog.Blog))
 	if err != nil {
 		log.Println(err)
 	}
@@ -45,3 +47,13 @@ func Test_createTable(t *testing.T) {
 // 	s := cache.Redisdb.Ping().String()
 // 	log.Println(s)
 // }
+func Test_Build(t *testing.T) {
+	err := exec.Command("go", "build", "-o", "./build/app.exe").Start()
+	if err != nil {
+		t.Error(err)
+	}
+	err = os.Rename("./config.json", "/build/config/config.json")
+	if err != nil {
+		t.Error(err)
+	}
+}

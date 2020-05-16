@@ -15,14 +15,14 @@ import (
 
 //User 用户结构体
 type User struct {
-	ID        int       `xorm:"pk autoincr" db:"id" json:"id"`
-	Name      string    `xorm:"varchar(12) not null        'name' comment('用户名')"           db:"name"       json:"name"         form:"name"       binding:"required"`
-	Emeil     string    `xorm:"varchar(25) not null unique 'emeil' comment('用户的邮箱')"       db:"emeil"      json:"emeil"        form:"emeil"      binding:"required"`
-	Password  string    `xorm:"varchar(12) not null         'password' comment('用户的密码')"   db:"password"   json:"password"     form:"password"   binding:"required"`
-	Avatar    string    `xorm:"varchar(25)  'avatar' comment('用户头像地址')"                   db:"avatar"    json:"avatar"        form:"avatar"`
-	Created   time.Time `xorm:"created"                                                      db:"created"    json:"created"       form:"created"`
-	Updated   time.Time `xorm:"updated"                                                      db:"updated"    json:"updated"       form:"updated"`
-	Authority int       `xorm:"int(1) not null 'authority' comment('权限')"                   db:"authority"  json:"authority"     form:"authority"  binding:"required"`
+	ID        int       ` db:"id" json:"id"`
+	Name      string    `db:"name"       json:"name"         form:"name"       binding:"required"`
+	Emeil     string    `db:"emeil"      json:"emeil"        form:"emeil"      binding:"required"`
+	Password  string    `db:"password"   json:"password"     form:"password"   binding:"required"`
+	Avatar    string    `db:"avatar"     json:"avatar"         form:"avatar"`
+	Created   time.Time `db:"created"    json:"created"       form:"created"`
+	Updated   time.Time `db:"updated"    json:"updated"       form:"updated"`
+	Authority int       `db:"authority"  json:"authority"     form:"authority"  binding:"required"`
 }
 
 var _ models.IModels = &User{}

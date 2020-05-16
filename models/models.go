@@ -1,17 +1,20 @@
 package models
 
-import (
-	//"task-system/models/logn"
-	//"task-system/models/user"
-)
-
 type IModels interface {
 	ToJSON() string
 	FromJSON(string)
 }
 
-//var _ IModels = &user.User{}
+// var (
+// 	User = "user"
+// )
 
-// func New() {//工厂方法
-
+// func New(a string) Modelser { //工厂方法
+// 	switch a {
+// 	case "user":
+// 		return new(user.User)
+// 	default:
+// 		log.Logger.Print("")
+// 		return nil
+// 	}
 // }

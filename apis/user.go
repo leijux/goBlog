@@ -22,8 +22,9 @@ func AddUserAPI(c *gin.Context) {
 		common.Rmsg(c, http.StatusOK, msg, false)
 		return
 	}
-	
-	u.Created = time.Now()
+	t := time.Now()
+	u.Created = t
+	u.Updated = t
 	id, err := u.AddUser()
 	if err != nil {
 		msg := fmt.Sprintln("add user err")
