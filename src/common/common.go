@@ -61,12 +61,22 @@ func Run(router *gin.Engine) {
 }
 
 //Rmsg 返回请求
-func Rmsg(c *gin.Context, code int, msg string, data interface{}) {
-	json := gin.H{
-		"code": http.StatusOK,
-		"msg":  msg,
-		"data": data,
+func Rmsg(c *gin.Context, code bool, msg string, data ...interface{}) {
+	var json gin.H
+	if data == nil {
+		json = gin.H{
+			"code": code,
+			"msg":  msg,
+			"data": "",
+		}
+	}else{
+		json = gin.H{
+			"code": code,
+			"msg":  msg,
+			"data": data[0],
+		}
 	}
+	
 	log.Logger.WithFields(logrus.Fields(json)).Infoln()
-	c.JSON(code, json)
+	c.JSON(http.StatusOK, json)
 }

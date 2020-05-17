@@ -2,7 +2,6 @@ package apis
 
 import (
 	"fmt"
-	"net/http"
 
 	"task-system/middleware"
 	"task-system/models/user"
@@ -17,17 +16,17 @@ func JwtToUserAPI(c *gin.Context) {
 	u, ok := c.Get(middleware.AuthMiddleware.IdentityKey)
 	if ok {
 		msg := fmt.Sprintln("User does not exist")
-		common.Rmsg(c, http.StatusOK, msg, false)
+		common.Rmsg(c, false, msg)
 		return
 	}
-	common.Rmsg(c, http.StatusOK, "success!", u)
+	common.Rmsg(c, true, "success!", u)
 }
 
 //JwtOkAPI 测试jwt功能
 func JwtOkAPI(c *gin.Context) {
-	u:=new(user.User)
+	u := new(user.User)
 	u.Emeil = "leiju@outlook.com"
 	u.GetUser()
 	msg := "JwtOK"
-	common.Rmsg(c, http.StatusOK, msg, u)
+	common.Rmsg(c, true, msg, u)
 }

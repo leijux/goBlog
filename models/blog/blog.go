@@ -38,6 +38,32 @@ func (blog *Blog) UpBlog() {
 
 }
 
-func (blog *Blog) GetBlog() {
-
+func (blog *Blog) GetBlogs(page int, perpPage int) (blogs []Blog, err error) {
+	n, m := (page-1)*perpPage, perpPage
+	err = database.Db.Select(&blogs, "select * from blog ORDER BY created DESC limit ?,?  ", n, m)
+	if err != nil {
+		log.Logger.Errorln(err)
+		return
+	}
+	return
+}
+func (blog *Blog) AuthoeToBlogs(page int, perpPage int) (blogs []Blog, err error) {
+	n, m := (page-1)*perpPage, perpPage
+	err = database.Db.Select(&blogs, "select * from blog where author=? ORDER BY created DESC limit ?,?  ", blog.Author, n, m)
+	if err != nil {
+		log.Logger.Errorln(err)
+		return
+	}
+	return
+}
+func (blog *Blog) Count() (count int, err error) {
+	rows, err := database.Db.Query("select count(*) from blog")
+	if err != nil {
+		log.Logger.Errorln(err)
+		return
+	}
+	if rows.Next() {
+		err = rows.Scan(&count)
+	}
+	return
 }

@@ -2,7 +2,6 @@ package apis
 
 import (
 	"fmt"
-	"net/http"
 	"time"
 
 	"task-system/log"
@@ -19,7 +18,7 @@ func AddUserAPI(c *gin.Context) {
 	if err != nil {
 		msg := fmt.Sprintln("shoul bind err")
 		log.Logger.Errorln(err)
-		common.Rmsg(c, http.StatusOK, msg, false)
+		common.Rmsg(c, false, msg)
 		return
 	}
 	t := time.Now()
@@ -29,10 +28,10 @@ func AddUserAPI(c *gin.Context) {
 	if err != nil {
 		msg := fmt.Sprintln("add user err")
 		log.Logger.Errorln(err)
-		common.Rmsg(c, http.StatusOK, msg, false)
+		common.Rmsg(c, false, msg)
 		return
 	}
 
 	msg := fmt.Sprintf("add user id")
-	common.Rmsg(c, http.StatusOK, msg, id)
+	common.Rmsg(c, true, msg, id)
 }

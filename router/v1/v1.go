@@ -32,6 +32,10 @@ func V1(router *gin.Engine) {
 
 		{ //blog
 			v1.POST("/blog", middleware.AuthMiddleware.MiddlewareFunc(), apis.AddBlogAPI)
+            //添加文章
+			v1.GET("/blogs",middleware.AuthMiddleware.MiddlewareFunc(),apis.GetBlogsAPI )
+			// v1.GET(":id/blogs", )
+			v1.GET("/blogSize", )
 		}
 	}
 }
