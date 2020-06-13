@@ -3,16 +3,18 @@ package apis
 import (
 	"fmt"
 	"strconv"
-	"task-system/log"
-	"task-system/middleware"
-	"task-system/models/blog"
-	"task-system/models/user"
-	"task-system/src/common"
 	"time"
+
+	"goBlog/log"
+	"goBlog/middleware"
+	"goBlog/models/blog"
+	"goBlog/models/user"
+	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
 )
 
+//AddBlogAPI 添加博客
 func AddBlogAPI(c *gin.Context) {
 	var b blog.Blog
 	err := c.Bind(&b)
@@ -25,7 +27,7 @@ func AddBlogAPI(c *gin.Context) {
 	t := time.Now()
 	b.Created = t
 	b.Updated = t
-	u, _ := c.Get(middleware.AuthMiddleware.IdentityKey)
+	u, _ := c.Get(middleware.AuthMiddleware.IdentityKey) //得到用户信息
 	if v, ok := u.(*user.User); ok {
 		if v.Emeil == b.Author {
 			id, err := b.AddBlog()
@@ -45,16 +47,14 @@ func AddBlogAPI(c *gin.Context) {
 	}
 }
 
-func UIdGetBlogsAPI(c *gin.Context) { //按照用户emeil下的文章 按照时间 文章数
-
-}
-
-func GetBlogsAPI(c *gin.Context) { //全部文章 时间排列 几篇
+//GetBlogsAPI 有作者就返回作者的分页  没有就返回全部的分页
+func GetBlogsAPI(c *gin.Context) { 
 	page := c.DefaultQuery("page", "1")
 	perpPage := c.DefaultQuery("per_page", "5")
 	author := c.Query("author")
 	p, err := strconv.Atoi(page)
 	pp, err := strconv.Atoi(perpPage)
+
 	if err != nil {
 		msg := fmt.Sprintln("get blog err")
 		log.Logger.Errorln(msg, err)
@@ -82,15 +82,29 @@ func GetBlogsAPI(c *gin.Context) { //全部文章 时间排列 几篇
 		common.Rmsg(c, true, "", bs)
 		return
 	}
+}
+//UpGlog 更新文章
+func UpGlog(){
 
 }
-
+//BlogSizeAPI 得到文章数量
 func BlogSizeAPI(c *gin.Context) {
 	var b blog.Blog
 	a, err := b.Count()
-	if err!=nil{
-		common.Rmsg(c, false,"")
+	if err != nil {
+		common.Rmsg(c, false, "")
 		return
 	}
 	common.Rmsg(c, true, "", a)
+}
+
+//GetTopAPI 得到to排名
+func GetTopAPI(c *gin.Context) {
+	var b blog.Blog
+	bs, err := b.GetTop()
+	if err != nil {
+		common.Rmsg(c, false, "")
+		return
+	}
+	common.Rmsg(c, true, "", bs)
 }

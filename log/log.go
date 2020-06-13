@@ -7,18 +7,19 @@ import (
 	"path"
 	"time"
 
-	"task-system/config"
+	"goBlog/config"
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
 )
 
+//Logger 全局的log记录器
 var Logger *logrus.Logger
 
 func init() {
-	logFilePath := config.Cfg.Log.LogFilePath
-	logFileName := config.Cfg.Log.LogFileName
+	logFilePath := config.GetString("log.logFilePath")
+	logFileName := config.GetString("log.logFileName")
 
 	fileName := path.Join(logFilePath, logFileName) // 日志文件
 

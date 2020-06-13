@@ -3,7 +3,7 @@ package middleware
 import (
 	"time"
 
-	"task-system/log"
+	"goBlog/log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"

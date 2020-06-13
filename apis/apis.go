@@ -2,16 +2,19 @@ package apis
 
 import (
 	"net/http"
-	"task-system/models/blog"
+
+	"goBlog/models/blog"
 
 	"github.com/gin-gonic/gin"
 )
 
+//Index 默认API
 func Index(c *gin.Context) {
 	//c.String(http.StatusOK, "this test!")
 	var b blog.Blog
-	a, _ := b.Count()
+	i, _ := b.Count()
 	c.JSON(http.StatusOK, gin.H{
-		"a":a,
+		"msg":  "test success！",
+		"data": i,
 	})
 }

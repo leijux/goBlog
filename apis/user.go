@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"task-system/log"
-	"task-system/models/user"
-	"task-system/src/common"
+	"goBlog/log"
+	"goBlog/models/user"
+	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
 )

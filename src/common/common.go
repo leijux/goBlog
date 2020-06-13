@@ -10,8 +10,8 @@ import (
 	"runtime"
 	"time"
 
-	"task-system/config"
-	"task-system/log"
+	"goBlog/config"
+	"goBlog/log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
@@ -34,8 +34,9 @@ func Open(file string) (err error) {
 
 //Run 运行服务
 func Run(router *gin.Engine) {
+	prot := config.GetString("gin.prot")
 	srv := &http.Server{
-		Addr:    config.Cfg.Gin.Prot,
+		Addr:    prot,
 		Handler: router,
 	}
 
@@ -69,14 +70,14 @@ func Rmsg(c *gin.Context, code bool, msg string, data ...interface{}) {
 			"msg":  msg,
 			"data": "",
 		}
-	}else{
+	} else {
 		json = gin.H{
 			"code": code,
 			"msg":  msg,
 			"data": data[0],
 		}
 	}
-	
+
 	log.Logger.WithFields(logrus.Fields(json)).Infoln()
 	c.JSON(http.StatusOK, json)
 }

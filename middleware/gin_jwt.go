@@ -3,9 +3,9 @@ package middleware
 import (
 	"time"
 
-	"task-system/log"
-	"task-system/models/logn"
-	"task-system/models/user"
+	"goBlog/log"
+	"goBlog/models/logn"
+	"goBlog/models/user"
 
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
@@ -38,7 +38,7 @@ func init() {
 			}
 		},
 		Authenticator: func(c *gin.Context) (interface{}, error) { //登入
-			var loginVals login.Login
+			var loginVals logn.Logn
 			if err := c.ShouldBind(&loginVals); err != nil {
 				return "", jwt.ErrMissingLoginValues
 			}

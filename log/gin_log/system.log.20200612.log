@@ -1,0 +1,3 @@
+{"err":null,"file":"e:/OneDrive/learning/program/Go/myGoProjects/goBlog/database/cache/redis.go:43","func":"goBlog/database/cache.init.0","level":"info","msg":"","pong":"PONG","time":"2020-06-12 20:22:08"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/goBlog/middleware/logToFile.go:48","func":"goBlog/middleware.LoggerToFile.func1","latency_time":156,"level":"info","msg":"","req_method":"GET","req_uri":"/","status_code":200,"time":"2020-06-12 20:22:08"}
+{"client_ip":"::1","file":"e:/OneDrive/learning/program/Go/myGoProjects/goBlog/middleware/logToFile.go:48","func":"goBlog/middleware.LoggerToFile.func1","latency_time":0,"level":"info","msg":"","req_method":"GET","req_uri":"/favicon.ico","status_code":404,"time":"2020-06-12 20:22:08"}

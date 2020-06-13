@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"time"
 
-	"task-system/database"
-	"task-system/database/cache"
-	myerr "task-system/err"
-	"task-system/log"
-	"task-system/models"
+	"goBlog/database"
+	"goBlog/database/cache"
+	myerr "goBlog/err"
+	"goBlog/log"
+	"goBlog/models"
 
 	"github.com/go-redis/redis/v7"
 )
@@ -72,6 +72,7 @@ func (user *User) GetUser() (err error) {
 			log.Logger.Errorln(err)
 			return
 		}
+		user.Password = ""//密码为空的
 		err = cache.Set(user.Emeil, user, 1*time.Hour) //写入缓存
 		return
 	}

@@ -1,9 +1,9 @@
 package router
 
 import (
-	"task-system/apis"
-	"task-system/middleware"
-	v1 "task-system/router/v1"
+	"goBlog/apis"
+	"goBlog/middleware"
+	v1 "goBlog/router/v1"
 
 	"github.com/gin-gonic/gin"
 )

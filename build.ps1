@@ -1,0 +1,1 @@
+yaegi .\build_go

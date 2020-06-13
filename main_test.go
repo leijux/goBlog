@@ -1,18 +1,16 @@
 package main
 
 import (
-	"log"
-	"os"
-	"os/exec"
+	"net/http"
+	"net/http/httptest"
 	"testing"
 
-	"task-system/config"
-	"task-system/database"
-	"task-system/models/blog"
+	"goBlog/config"
+	"goBlog/database"
 
+	"github.com/buger/jsonparser"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/stretchr/testify/assert"
-	"xorm.io/xorm"
 )
 
 func Test_DbPing(t *testing.T) {
@@ -20,40 +18,42 @@ func Test_DbPing(t *testing.T) {
 	if err != nil {
 		assert.Error(t, err, "发生错误")
 	}
-
-}
-func Test_createTable(t *testing.T) {
-	engine, err := xorm.NewEngine(config.Cfg.Database.Mysql.DriverName, config.Cfg.Database.Mysql.DataSourceName)
-	if err != nil {
-		log.Println(err)
-	}
-	err = engine.Sync2(new(blog.Blog))
-	if err != nil {
-		log.Println(err)
-	}
-
-	// i, err := engine.Insert(&user.User{
-	// 	Name:      "leiju",
-	// 	Emeil:     "leiju@outlook.com",
-	// 	Password:  "12345678",
-	// 	Authority: 0,
-	// })
-	// if err != nil {
-	// 	log.Println(i, err)
-	// }
 }
 
-// func Test_Redis(t *testing.T) {
-// 	s := cache.Redisdb.Ping().String()
-// 	log.Println(s)
-// }
-func Test_Build(t *testing.T) {
-	err := exec.Command("go", "build", "-o", "./build/app.exe").Start()
-	if err != nil {
-		t.Error(err)
+var token string
+var r = setupRouter()
+var pwd = "12345678"
+var emeil = "leiju@outlook.com"
+
+func TestPingRoute(t *testing.T) {
+
+	req, _ := http.NewRequest("GET", `/v1/logn?pwd=`+pwd+`&emeil=`+emeil, nil)
+	w := httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+
+	if assert.Equal(t, 200, w.Code) {
+		token, _ = jsonparser.GetString(w.Body.Bytes(), "token")
 	}
-	err = os.Rename("./config.json", "/build/config/config.json")
-	if err != nil {
-		t.Error(err)
+	code, _ := jsonparser.GetInt(w.Body.Bytes(), "code")
+
+	assert.Equal(t, 200, int(code))
+
+	req, _ = http.NewRequest("GET", `/blogs?page=1&per_page=5&author=`+emeil, nil)
+
+	req.Header = map[string][]string{
+		"Authorization": {"Bearer " + token},
 	}
+	w = httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+	if assert.Equal(t, 200, w.Code) {
+		//assert.Error(t, nil, w.Body.String())
+		code, _ := jsonparser.GetInt(w.Body.Bytes(), "code")
+		assert.Equal(t, 200, int(code))
+		//content,_, _, _ := jsonparser.Get(, "data")
+		assert.Error(t, nil,w.Body.String())
+	}
+}
+
+func Test_config(t *testing.T){
+	config.Set("test.leiju", "test")
 }

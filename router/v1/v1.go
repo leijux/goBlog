@@ -1,8 +1,8 @@
 package v1
 
 import (
-	"task-system/apis"
-	"task-system/middleware"
+	"goBlog/apis"
+	"goBlog/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,10 +10,9 @@ import (
 func V1(router *gin.Engine) {
 	v1 := router.Group("/v1")
 	{
-
 		{ //logn
 			v1.POST("/logn", apis.AddUserAPI) //注册
-
+			v1.GET("/emeilChack", apis.EmeilChackAPI)
 			v1.GET("/logn", middleware.AuthMiddleware.LoginHandler) //登入
 		}
 
@@ -32,10 +31,11 @@ func V1(router *gin.Engine) {
 
 		{ //blog
 			v1.POST("/blog", middleware.AuthMiddleware.MiddlewareFunc(), apis.AddBlogAPI)
-            //添加文章
-			v1.GET("/blogs",middleware.AuthMiddleware.MiddlewareFunc(),apis.GetBlogsAPI )
-			// v1.GET(":id/blogs", )
-			v1.GET("/blogSize", )
+			//添加文章
+			v1.GET("/blogs", apis.GetBlogsAPI)
+			// 获取文章数量
+			v1.GET("/blogSize", apis.BlogSizeAPI)
+			v1.GET("/getTop", apis.GetTopAPI)
 		}
 	}
 }

@@ -1,65 +1,63 @@
 package config
 
 import (
-	"encoding/json"
-	"io/ioutil"
-	"log"
-	myerr "task-system/err"
+	myerr "goBlog/err"
+
+	"github.com/golobby/config"
+	"github.com/golobby/config/feeder"
+	log "github.com/sirupsen/logrus"
 )
 
 const (
-	//Jsonfile 文件路径
-	Jsonfile = "./config/config.json"
+	//JSONPath 文件路径
+	JSONPath = "./config/config.json"
 	//Mysql 字段
 	Mysql = "mysql"
 	//Sqlite 字段
 	Sqlite = "sqlite"
 )
 
-type config struct {
-	Gin struct {
-		IsDebugMode bool   `json:"isDebugMode"`
-		Open        string `json:"open"`
-		Prot        string `json:"prot"`
-	} `json:"gin"`
-	Log struct {
-		LogFilePath string `json:"logFilePath"`
-		LogFileName string `json:"logFileName"`
-	} `json:"log"`
-	Database struct {
-		Enable string `json:"enable"`
-		Mysql  struct {
-			DriverName     string `json:"driverName"`
-			DataSourceName string `json:"dataSourceName"`
-		} `json:"mysql"`
-		Sqlite struct {
-			DriverName     string `json:"driverName"`
-			DataSourceName string `json:"dataSourceName"`
-		} `json:"sqlite"`
-		Redis struct {
-			IsOpen   bool   `json:"isOpen"`
-			Addr     string `json:"addr"`
-			Password string `json:"password"`
-			Db       int    `json:"db"`
-		} `json:"redis"`
-	} `json:"database"`
-}
-
-//Cfg 配置文件对象
-var Cfg *config
+//cfg 配置文件对象
+var cfg *config.Config
 
 func init() {
-	f, err := ioutil.ReadFile(Jsonfile)
+	var err error
+	cfg, err = config.New(config.Options{
+		Feeder: feeder.Json{Path: JSONPath},
+	})
 	if err != nil {
 		log.Fatalln(myerr.ErrOpenFile, err)
 	}
-	err = json.Unmarshal(f, &Cfg)
-
-	if err != nil {
-		log.Fatalln(err)
-	}
 }
 
-// func Save(){
+//GetString 返回字符串
+func GetString(s string) string {
+	j, err := cfg.GetString(s)
+	if err != nil {
+		log.Errorln(err)
+	}
+	return j
+}
 
-// }
+//GetBool 返回bool
+func GetBool(s string) bool {
+	j, err := cfg.GetBool(s)
+	if err != nil {
+		log.Errorln(err)
+	}
+	return j
+}
+
+//GetInt 返回int
+func GetInt(s string) int {
+	j, err := cfg.GetInt(s)
+	if err != nil {
+		log.Errorln(err)
+	}
+	return j
+}
+
+//Set 写入值
+func Set(key string, value interface{}) {
+	cfg.Set(key, value)
+}

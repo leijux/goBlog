@@ -1,26 +1,27 @@
 package database
 
 import (
-	"task-system/config"
-	myerr "task-system/err"
-	"task-system/log"
+	"goBlog/config"
+	myerr "goBlog/err"
+	"goBlog/log"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 )
+
 //Db 数据库链接对象
 var Db *sqlx.DB
 
 func init() {
 	var err error
-	switch config.Cfg.Database.Enable {
+	switch config.GetString("database.enable") {
 	case config.Mysql:
-		DriverName := config.Cfg.Database.Mysql.DriverName
-		DataSourceName := config.Cfg.Database.Mysql.DataSourceName
+		DriverName := config.GetString("database.mysql.driverName")
+		DataSourceName := config.GetString("database.mysql.dataSourceName")
 		Db, err = sqlx.Connect(DriverName, DataSourceName)
 	case config.Sqlite:
-		DriverName := config.Cfg.Database.Sqlite.DriverName
-		DataSourceName := config.Cfg.Database.Sqlite.DataSourceName
+		DriverName := config.GetString("database.sqlite.driverName")
+		DataSourceName := config.GetString("database.sqlite.dataSourceName")
 		Db, err = sqlx.Connect(DriverName, DataSourceName)
 	default:
 		log.Logger.Fatalln(myerr.ErrEnableValue)
