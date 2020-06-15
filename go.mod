@@ -7,6 +7,7 @@ require (
 	github.com/appleboy/gin-jwt/v2 v2.6.3
 	github.com/buger/jsonparser v1.0.0
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
+	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-redis/redis/v7 v7.4.0
 	github.com/go-sql-driver/mysql v1.5.0

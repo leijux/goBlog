@@ -13,7 +13,7 @@ import (
 
 //JwtToUserAPI 解析jwt里的数据
 func JwtToUserAPI(c *gin.Context) {
-	u, ok := c.Get(middleware.AuthMiddleware.IdentityKey)
+	u, ok := c.Get(middleware.GetIdentityKey())
 	if ok {
 		common.Rmsg(c, true, "success!", u)
 		return

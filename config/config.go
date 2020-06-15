@@ -31,8 +31,8 @@ func init() {
 }
 
 //GetString 返回字符串
-func GetString(s string) string {
-	j, err := cfg.GetString(s)
+func GetString(key string) string {
+	j, err := cfg.GetString(key)
 	if err != nil {
 		log.Errorln(err)
 		return ""
@@ -41,8 +41,8 @@ func GetString(s string) string {
 }
 
 //GetBool 返回bool
-func GetBool(s string) bool {
-	j, err := cfg.GetBool(s)
+func GetBool(key string) bool {
+	j, err := cfg.GetBool(key)
 	if err != nil {
 		log.Errorln(err)
 		return false
@@ -51,13 +51,23 @@ func GetBool(s string) bool {
 }
 
 //GetInt 返回int
-func GetInt(s string) int {
-	j, err := cfg.GetInt(s)
+func GetInt(key string) int {
+	j, err := cfg.GetInt(key)
 	if err != nil {
-		log.Errorln(err)
+		//log.Errorln(err)
 		return 0
 	}
 	return j
+}
+
+//Get 获取数据
+func Get(key string) (value interface{}) {
+	value, err := cfg.Get(key)
+	if err != nil {
+		log.Errorln(err)
+		return
+	}
+	return
 }
 
 //Set 写入值 写入内存不写入文件

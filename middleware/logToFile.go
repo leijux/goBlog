@@ -9,7 +9,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// 日志记录到文件
+//LoggerToFile 日志记录到文件
 func LoggerToFile() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
@@ -50,23 +50,23 @@ func LoggerToFile() gin.HandlerFunc {
 	}
 }
 
-// 日志记录到 MongoDB
-func LoggerToMongo() gin.HandlerFunc {
-	return func(c *gin.Context) {
+// //LoggerToMongo 日志记录到 MongoDB
+// func LoggerToMongo() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
 
-	}
-}
+// 	}
+// }
 
-// 日志记录到 ES
-func LoggerToES() gin.HandlerFunc {
-	return func(c *gin.Context) {
+// //LoggerToES 日志记录到 ES
+// func LoggerToES() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
 
-	}
-}
+// 	}
+// }
 
-// 日志记录到 MQ
-func LoggerToMQ() gin.HandlerFunc {
-	return func(c *gin.Context) {
+// //LoggerToMQ 日志记录到 MQ
+// func LoggerToMQ() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
 
-	}
-}
+// 	}
+// }

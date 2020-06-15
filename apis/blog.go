@@ -1,6 +1,7 @@
 package apis
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"time"
@@ -27,7 +28,7 @@ func AddBlogAPI(c *gin.Context) {
 	t := time.Now()
 	b.Created = t
 	b.Updated = t
-	u, _ := c.Get(middleware.AuthMiddleware.IdentityKey) //得到用户信息
+	u, _ := c.Get(middleware.GetIdentityKey()) //得到用户信息
 	if v, ok := u.(*user.User); ok {
 		if v.Emeil == b.Author {
 			id, err := b.AddBlog()
@@ -48,13 +49,16 @@ func AddBlogAPI(c *gin.Context) {
 }
 
 //GetBlogsAPI 有作者就返回作者的分页  没有就返回全部的分页
-func GetBlogsAPI(c *gin.Context) { 
+func GetBlogsAPI(c *gin.Context) {
 	page := c.DefaultQuery("page", "1")
 	perpPage := c.DefaultQuery("per_page", "5")
 	author := c.Query("author")
 	p, err := strconv.Atoi(page)
 	pp, err := strconv.Atoi(perpPage)
-
+	
+	if pp <= 0 || p <= 0 {
+		err = errors.New("page/perpPage Less than 0")
+	}
 	if err != nil {
 		msg := fmt.Sprintln("get blog err")
 		log.Logger.Errorln(msg, err)
@@ -83,10 +87,12 @@ func GetBlogsAPI(c *gin.Context) {
 		return
 	}
 }
+
 //UpGlog 更新文章
-func UpGlog(){
+func UpGlog() {
 
 }
+
 //BlogSizeAPI 得到文章数量
 func BlogSizeAPI(c *gin.Context) {
 	var b blog.Blog

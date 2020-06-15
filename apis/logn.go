@@ -7,7 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
-
+//EmeilChackAPI 验证emeil
 func EmeilChackAPI(c *gin.Context) {
 	emeil := c.Query("emeil")
 
