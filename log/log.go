@@ -1,8 +1,8 @@
 package log
 
 import (
-	"fmt"
 	"io"
+	"log"
 	"os"
 	"path"
 	"time"
@@ -26,12 +26,13 @@ func init() {
 	// 写入文件
 	src, err := os.OpenFile(fileName, os.O_APPEND|os.O_WRONLY, os.ModeAppend)
 	if err != nil {
-		fmt.Println("err:", err)
+		log.Println("err:", err)
 	}
 
 	Logger = logrus.New()                       // 实例化
 	Logger.Out = io.MultiWriter(src, os.Stderr) // 设置输出true
 	Logger.SetReportCaller(true)                //记录 行号 文件和函数
+	
 	Logger.SetLevel(logrus.DebugLevel)          // 设置日志级别 在什么级别之上
 
 	logWriter, err := rotatelogs.New( // 设置 rotatelogs

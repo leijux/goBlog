@@ -1,6 +1,7 @@
 package main
 
 import (
+	"goBlog/log"
 	"goBlog/config"
 	"goBlog/database"
 	"goBlog/database/cache"
@@ -9,6 +10,7 @@ import (
 
 	"github.com/DeanThompson/ginpprof"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 var isDebugMode bool
@@ -20,7 +22,8 @@ func main() {
 	isDebugMode = config.GetBool("gin.isDebugMode")
 
 	if !isDebugMode { //判断模式，如果是debug模式则开启pprof
-		gin.SetMode(gin.ReleaseMode) //发布模式
+		gin.SetMode(gin.ReleaseMode)       //发布模式
+		log.Logger.SetLevel(logrus.ErrorLevel) // 设置日志级别 在什么级别之上
 	}
 
 	gin.DisableConsoleColor() //静止控制台颜色，防止有空格
