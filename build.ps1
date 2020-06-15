@@ -1,1 +1,1 @@
-yaegi .\build_go
+yaegi .\build_go_windows

@@ -1,0 +1,64 @@
+package main
+
+import (
+	"fmt"
+	"io"
+	"io/ioutil"
+	"log"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"runtime"
+)
+
+func main() {
+	path := "./build"
+	var err error
+	fileinfo, err := ioutil.ReadDir(path)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	if len(fileinfo) != 0 {
+		for _, v := range fileinfo {
+			if v.IsDir() {
+				os.RemoveAll(filepath.Join(path,v.Name()))
+			} else {
+				os.Remove(filepath.Join(path,v.Name()))
+			}
+		}
+	}
+	switch runtime.GOOS {
+	case "linux":
+		err = exec.Command("go", "build", "-o", "./build/app").Start()
+	case "windows":
+		err = exec.Command("go", "build", "-o", "./build/app.exe").Start()
+	default:
+		err = fmt.Errorf("GOOS err")
+	}
+	if err != nil {
+		log.Fatalln(err)
+	}
+	createLog()
+	createConfig()
+}
+
+func createLog() {
+	os.MkdirAll("./build/log/gin_log", os.ModePerm)
+	_, err := os.Create("./build/log/gin_log/system.log")
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
+
+func createConfig() {
+	file, err := os.OpenFile("./config/config.json", 2, 0666)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	os.Mkdir("./build/config", os.ModePerm)
+	json, err := os.Create("./build/config/config.json")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	io.Copy(json,file)
+}

@@ -35,6 +35,7 @@ func GetString(s string) string {
 	j, err := cfg.GetString(s)
 	if err != nil {
 		log.Errorln(err)
+		return ""
 	}
 	return j
 }
@@ -44,6 +45,7 @@ func GetBool(s string) bool {
 	j, err := cfg.GetBool(s)
 	if err != nil {
 		log.Errorln(err)
+		return false
 	}
 	return j
 }
@@ -53,11 +55,12 @@ func GetInt(s string) int {
 	j, err := cfg.GetInt(s)
 	if err != nil {
 		log.Errorln(err)
+		return 0
 	}
 	return j
 }
 
-//Set 写入值
+//Set 写入值 写入内存不写入文件
 func Set(key string, value interface{}) {
 	cfg.Set(key, value)
 }
