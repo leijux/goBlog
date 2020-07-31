@@ -15,7 +15,7 @@ import (
 
 //User 用户结构体
 type User struct {
-	ID        int       ` db:"id" json:"id"`
+	ID        int       `db:"id" json:"id"`
 	Name      string    `db:"name"       json:"name"         form:"name"       binding:"required"`
 	Emeil     string    `db:"emeil"      json:"emeil"        form:"emeil"      binding:"required"`
 	Password  string    `db:"password"   json:"password"     form:"password"   binding:"required"`
@@ -72,7 +72,7 @@ func (user *User) GetUser() (err error) {
 			log.Logger.Errorln(err)
 			return
 		}
-		user.Password = ""//密码为空的
+		user.Password = ""                             //密码为空的
 		err = cache.Set(user.Emeil, user, 1*time.Hour) //写入缓存
 		return
 	}

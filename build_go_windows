@@ -29,9 +29,9 @@ func main() {
 	}
 	switch runtime.GOOS {
 	case "linux":
-		err = exec.Command("go", "build", "-ldflags="-s -w"","-o", "./build/app").Start()
+		err = exec.Command("go", "build", `-ldflags="-s -w"`,"-o", "./build/app").Start()
 	case "windows":
-		err = exec.Command("go", "build", "-ldflags="-s -w"","-o", "./build/app.exe").Start()
+		err = exec.Command("go", "build", `-ldflags="-s -w"`,"-o", "./build/app.exe").Start()
 	default:
 		err = fmt.Errorf("GOOS err")
 	}
