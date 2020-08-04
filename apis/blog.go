@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
-	"time"
 
 	"goBlog/log"
 	"goBlog/middleware"
@@ -25,12 +24,9 @@ func AddBlogAPI(c *gin.Context) {
 		common.Rmsg(c, false, msg)
 		return
 	}
-	t := time.Now()
-	b.Created = t
-	b.Updated = t
 	u, _ := c.Get(middleware.GetIdentityKey()) //得到用户信息
-	if v, ok := u.(*user.User); ok {
-		if v.Emeil == b.Author {
+	if v, ok := u.(*user.UserApi); ok {
+		if v.Email == b.Email {
 			id, err := b.AddBlog()
 			if err != nil {
 				msg := fmt.Sprintln("add blog err")
@@ -52,10 +48,10 @@ func AddBlogAPI(c *gin.Context) {
 func GetBlogsAPI(c *gin.Context) {
 	page := c.DefaultQuery("page", "1")
 	perpPage := c.DefaultQuery("per_page", "5")
-	author := c.Query("author")
+	email := c.Query("email")
 	p, err := strconv.Atoi(page)
 	pp, err := strconv.Atoi(perpPage)
-	
+
 	if pp <= 0 || p <= 0 {
 		err = errors.New("page/perpPage Less than 0")
 	}
@@ -65,7 +61,7 @@ func GetBlogsAPI(c *gin.Context) {
 		common.Rmsg(c, false, msg)
 		return
 	}
-	if author == "" {
+	if email == "" {
 		var b blog.Blog
 		//page=2&per_page=100
 		bs, err := b.GetBlogs(p, pp)
@@ -77,7 +73,7 @@ func GetBlogsAPI(c *gin.Context) {
 	} else {
 		b := new(blog.Blog)
 		//page=2&per_page=100
-		b.Author = author
+		b.Email = email
 		bs, err := b.AuthoeToBlogs(p, pp)
 		if err != nil {
 			common.Rmsg(c, false, err.Error())

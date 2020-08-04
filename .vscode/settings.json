@@ -9,5 +9,8 @@
             "server": "47.101.147.15",
             "username": "root"
         }
+    ],
+    "cSpell.words": [
+        "gorm"
     ]
 }

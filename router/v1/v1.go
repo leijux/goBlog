@@ -5,6 +5,8 @@ import (
 	"goBlog/middleware"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 //V1 v1版本的路由
@@ -13,7 +15,7 @@ func V1(router *gin.Engine) {
 	{
 		{ //logn
 			v1.POST("/logn", apis.AddUserAPI)          //注册
-			v1.GET("/emeilChack", apis.EmeilChackAPI)  //邮箱验证api
+			v1.GET("/emailCheck", apis.EmailCheckApi)  //邮箱验证api
 			v1.GET("/logn", middleware.LoginHandler()) //登入
 		}
 
@@ -40,5 +42,6 @@ func V1(router *gin.Engine) {
 			//得到文章排名
 			v1.GET("/getTop", apis.GetTopAPI)
 		}
+		v1.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	}
 }

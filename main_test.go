@@ -25,7 +25,7 @@ var r = setupRouter()
 var pwd = "12345678"
 var emeil = "leiju@outlook.com"
 
-func TestPingRoute(t *testing.T) {
+func Test_PingRoute(t *testing.T) {
 
 	req, _ := http.NewRequest("GET", `/v1/logn?pwd=`+pwd+`&emeil=`+emeil, nil)
 	w := httptest.NewRecorder()
@@ -50,10 +50,13 @@ func TestPingRoute(t *testing.T) {
 		code, _ := jsonparser.GetInt(w.Body.Bytes(), "code")
 		assert.Equal(t, 200, int(code))
 		//content,_, _, _ := jsonparser.Get(, "data")
-		assert.Error(t, nil,w.Body.String())
+		assert.Error(t, nil, w.Body.String())
 	}
 }
 
-func Test_config(t *testing.T){
+func Test_config(t *testing.T) {
 	config.Set("test.leiju", "test")
+}
+func Test_gorm(t *testing.T) {
+
 }

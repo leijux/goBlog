@@ -5,18 +5,17 @@ import (
 	"goBlog/database"
 	"goBlog/log"
 	"goBlog/models"
-	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
 //Blog 博客
 type Blog struct {
-	ID      int       `db:"id"      json:"id"`
-	Title   string    `db:"title"   json:"title"     form:"title"    binding:"required"`
-	Content string    `db:"content" json:"content"   form:"content"  binding:"required"`
-	Author  string    `db:"author"  json:"author"    form:"author"   binding:"required"`
-	Likes   int       `db:"likes"   json:"likes"     form:"likes"`
-	Created time.Time `db:"created" json:"created"`
-	Updated time.Time `db:"updated" json:"updated"`
+	gorm.Model
+	Title   string `gorm:"not null"              db:"title"   json:"title"     form:"title"    binding:"required"`
+	Content string `gorm:"type:text;not null"    db:"content" json:"content"   form:"content"  binding:"required"`
+	Email   string `gorm:"not null"              db:"author"  json:"author"    form:"author"   binding:"required"`
+	Likes   int    `db:"likes"   json:"likes"     form:"likes"`
 }
 
 var _ models.IModels = &Blog{}
@@ -40,6 +39,7 @@ func (blog *Blog) AddBlog() (id int64, err error) {
 func (blog *Blog) DelBlog() {
 
 }
+
 //UpBlog 更新博客
 func (blog *Blog) UpBlog() {
 
@@ -59,7 +59,7 @@ func (blog *Blog) GetBlogs(page int, perpPage int) (blogs []Blog, err error) {
 //AuthoeToBlogs 作者分页
 func (blog *Blog) AuthoeToBlogs(page int, perpPage int) (blogs []Blog, err error) {
 	n, m := (page-1)*perpPage, perpPage
-	err = database.Db.Select(&blogs, "select * from blog where author=? order by created desc limit ?,?  ", blog.Author, n, m)
+	err = database.Db.Select(&blogs, "select * from blog where author=? order by created desc limit ?,?  ", blog.Email, n, m)
 	if err != nil {
 		log.Logger.Errorln(err)
 		return

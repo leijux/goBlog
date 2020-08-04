@@ -2,7 +2,6 @@ package apis
 
 import (
 	"fmt"
-	"time"
 
 	"goBlog/log"
 	"goBlog/models/user"
@@ -13,7 +12,7 @@ import (
 
 //AddUserAPI 添加用户
 func AddUserAPI(c *gin.Context) {
-	var u user.User
+	var u user.UserApi
 	err := c.Bind(&u)
 	if err != nil {
 		msg := fmt.Sprintln("shoul bind err")
@@ -21,17 +20,15 @@ func AddUserAPI(c *gin.Context) {
 		common.Rmsg(c, false, msg)
 		return
 	}
-	t := time.Now()
-	u.Created = t
-	u.Updated = t
-	id, err := u.AddUser()
-	if err != nil {
+
+	b, err := u.AddUser()
+	if !b {
 		msg := fmt.Sprintln("add user err")
 		log.Logger.Errorln(err)
 		common.Rmsg(c, false, msg)
 		return
 	}
 
-	msg := fmt.Sprintf("add user id")
-	common.Rmsg(c, true, msg, id)
+	msg := fmt.Sprintf("add user success")
+	common.Rmsg(c, true, msg)
 }

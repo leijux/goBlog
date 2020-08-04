@@ -7,8 +7,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
-
-//Index 默认API
+// @Summary 测试index
+// @Description testApi
+// @Tags 测试
+// @Accept json
+// @Success 200 {json} string "{"msg": "test success！"}"
+// @Router / [get]
 func Index(c *gin.Context) {
 	//c.String(http.StatusOK, "this test!")
 	var b blog.Blog

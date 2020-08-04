@@ -1,0 +1,62 @@
+basePath: /v1
+host: localhost:8000
+info:
+  contact:
+    email: leijuxx@outlook.com
+    name: goBlog
+    url: https://www.topgoer.com
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://www.topgoer.com
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: testApi
+      parameters:
+      - description: 人名
+        in: query
+        name: who
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"msg": "test success！"}'
+          schema:
+            type: string
+        "400":
+          description: '{"msg": "who are you"}'
+          schema:
+            type: string
+      summary: 测试index
+      tags:
+      - 测试
+  /emailCheck:
+    get:
+      consumes:
+      - application/json
+      description: 验证邮箱
+      parameters:
+      - description: 邮箱
+        in: query
+        name: email
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{"msg": "email check ok"}'
+          schema:
+            type: string
+        "400":
+          description: '{"msg": "email check err"}'
+          schema:
+            type: string
+      summary: EmailCheckApi
+      tags:
+      - 测试
+swagger: "2.0"

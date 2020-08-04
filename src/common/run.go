@@ -1,13 +1,17 @@
 package common
 
 import (
+	"net/http"
 	"os"
 	"os/signal"
+	"runtime"
+	"syscall"
 	"time"
-	
+
 	"goBlog/config"
 	"goBlog/log"
 
+	"github.com/fvbock/endless"
 	"github.com/gin-gonic/gin"
 	"github.com/valyala/fasthttp"
 	"github.com/valyala/fasthttp/fasthttpadaptor"
@@ -16,12 +20,24 @@ import (
 //Run 运行服务
 func Run(router *gin.Engine) {
 	prot := config.GetString("gin.prot")
-	// srv := &http.Server{
-	// 	Addr:    prot,
-	// 	Handler: router,
-	// }
+	switch runtime.GOOS {
+	case "linux":
+		runLinux(prot, router)
+	case "windows":
+		runWindows(prot, router)
+	}
+}
+
+func runLinux(prot string, handler http.Handler) {
+	if err := endless.ListenAndServe(prot, handler); err != nil {
+		log.Logger.Fatalf("listen: %s\n", err)
+	}
+	log.Logger.Printf("*****  Actual pid is %d", syscall.Getpid())
+}
+
+func runWindows(prot string, handler http.Handler) {
 	srv := &fasthttp.Server{
-		Handler:     fasthttpadaptor.NewFastHTTPHandler(router),
+		Handler:     fasthttpadaptor.NewFastHTTPHandler(handler),
 		ReadTimeout: 15 * time.Second,
 	}
 

@@ -4,14 +4,13 @@ import (
 	"time"
 
 	"goBlog/log"
-	"goBlog/models/logn"
+	"goBlog/models/login"
 	"goBlog/models/user"
-
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
 )
 
-var identityKey = "Emeil"
+var identityKey = "Email"
 
 //AuthMiddleware jwt
 var authMiddleware *jwt.GinJWTMiddleware
@@ -27,7 +26,7 @@ func init() {
 		PayloadFunc: func(data interface{}) jwt.MapClaims { //负载
 			if v, ok := data.(*user.User); ok {
 				return jwt.MapClaims{
-					identityKey: v.Emeil,
+					identityKey: v.Email,
 				}
 			}
 			return jwt.MapClaims{}
@@ -35,11 +34,11 @@ func init() {
 		IdentityHandler: func(c *gin.Context) interface{} { //解析负载
 			claims := jwt.ExtractClaims(c)
 			return &user.User{
-				Emeil: claims[identityKey].(string),
+				Email: claims[identityKey].(string),
 			}
 		},
 		Authenticator: func(c *gin.Context) (interface{}, error) { //登入
-			var loginVals logn.Logn
+			var loginVals login.Login
 			if err := c.ShouldBind(&loginVals); err != nil {
 				return "", jwt.ErrMissingLoginValues
 			}
@@ -48,12 +47,12 @@ func init() {
 			}
 			return nil, jwt.ErrFailedAuthentication
 		},
-		Authorizator: func(data interface{}, c *gin.Context) bool { //验证
-			if _, ok := data.(*user.User); ok {
-				return true
-			}
-			return false
-		},
+		// Authorizator: func(data interface{}, c *gin.Context) bool { //验证
+		// 	if _, ok := data.(*db.User); ok {
+		// 		return true
+		// 	}
+		// 	return false
+		// },
 		Unauthorized: func(c *gin.Context, code int, message string) {
 			c.JSON(code, gin.H{
 				"code":    code,
@@ -110,7 +109,8 @@ func JwtMiddlewareFunc() gin.HandlerFunc {
 func LoginHandler() gin.HandlerFunc {
 	return authMiddleware.LoginHandler
 }
+
 //GetIdentityKey 得到 IdentityKey
-func GetIdentityKey()string{
+func GetIdentityKey() string {
 	return authMiddleware.IdentityKey
 }

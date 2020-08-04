@@ -40,7 +40,9 @@ func init() {
 			"err":  err,
 		}).Fatalln()
 	}
-	redisdb.FlushDBAsync() //清空本缓存库数据
+	
+	//TODO 测试时要清空 暂时不处理
+	redisdb.FlushDBAsync() //清空本缓存库数据 
 	log.Logger.WithFields(logrus.Fields{
 		"pong": pong,
 		"err":  err,
