@@ -2,15 +2,14 @@ package main
 
 import (
 	"goBlog/config"
-	"goBlog/database"
 	"goBlog/database/cache"
 	"goBlog/database/orm"
 	_ "goBlog/docs"
 	"goBlog/log"
 	"goBlog/models/blog"
+	"goBlog/models/user"
 	"goBlog/router"
 	"goBlog/src/common"
-	"os/user"
 
 	"github.com/DeanThompson/ginpprof"
 	"github.com/gin-gonic/gin"
@@ -35,15 +34,14 @@ import (
 var isDebugMode bool
 
 func init() {
-
 	// 创建表时添加表后缀
 	orm.Db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(new(user.User), new(blog.Blog))
 }
 
 func main() {
 
-	defer database.Db.Close() //关闭数据库
-	defer cache.Close()       //关闭缓存
+	defer orm.Close() //关闭数据库
+	defer cache.Close()  //关闭缓存
 
 	isDebugMode = config.GetBool("gin.isDebugMode")
 

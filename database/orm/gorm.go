@@ -11,14 +11,16 @@ import (
 var Db *gorm.DB
 
 func init() {
+	var err error
 	DriverName := config.GetString("database.mysql.driverName")
 	DataSourceName := config.GetString("database.mysql.dataSourceName")
-	Db, err := gorm.Open(DriverName, DataSourceName)
+	Db, err = gorm.Open(DriverName, DataSourceName)
 	Db.SingularTable(true)
 	if err != nil {
 		log.Logger.Fatalln(err)
 	}
 }
+
 func Close() {
 	if Db != nil {
 		Db.Close()

@@ -32,10 +32,10 @@ type UserApi struct {
 	Avatar   string `json:"avatar"       form:"avatar"`
 }
 
-var _ models.IModels = &User{}
+var _ models.IModels = &UserApi{}
 
-func (u User) ToUserApi() UserApi {
-	return UserApi{
+func (u User) ToUserApi() *UserApi {
+	return &UserApi{
 		Name:     u.Name,
 		Email:    u.Email,
 		Password: "",
@@ -66,7 +66,7 @@ func (user *UserApi) AddUser() (b bool, err error) {
 }
 
 //DelUser 删除用户 *权限管理
-func (user *User) DelUser() (l int64, err error) {
+func (user *UserApi) DelUser() (l int64, err error) {
 	res, err := database.Db.Exec("delete form user where email=?", user.Email)
 	if err != nil {
 		log.Logger.Errorln(err)
@@ -82,20 +82,21 @@ func (user *User) UpUser() (err error) {
 }
 
 //GetUser 得到用户数据
-func (user *User) GetUser() (err error) {
+func (user *UserApi) GetUser() (err error) {
 	if user.Email == "" {
 		return myerr.ErrStringIsEmpty
 	}
-
+	var u User
 	res, Rederr := cache.Get(user.Email)
 	if Rederr == redis.Nil || Rederr == cache.ErrRedisOff { //判断是否是空的
 		log.Logger.Errorln(Rederr)
-		err = database.Db.Get(user, "select * from user where.Email=?", user.Email)
+		//err = database.Db.Get(user, "select * from user where.Email=?", user.Email)
+		err = orm.Db.Where("email = ?", user.Email).First(&u).Error
 		if err != nil {
 			log.Logger.Errorln(err)
 			return
 		}
-		user.Password = nil                            //密码为空的
+		*user = *u.ToUserApi()
 		err = cache.Set(user.Email, user, 1*time.Hour) //写入缓存
 		return
 	}
@@ -110,7 +111,7 @@ func (user *User) GetUsers() (users []User, err error) {
 }
 
 //ToJSON ...
-func (user *User) ToJSON() string {
+func (user *UserApi) ToJSON() string {
 	j, err := json.Marshal(user)
 	if err != nil {
 		log.Logger.Debugln(err)
@@ -119,7 +120,7 @@ func (user *User) ToJSON() string {
 	return string(j)
 }
 
-func (user *User) FromJSON(data string) {
+func (user *UserApi) FromJSON(data string) {
 	err := json.Unmarshal([]byte(data), user)
 	if err != nil {
 		log.Logger.Debugln(err)

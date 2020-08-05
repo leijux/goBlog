@@ -10,7 +10,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//AddUserAPI 添加用户
+// @Summary AddUserAPI
+// @Description 添加用户数据
+// @Tags 测试
+// @Accept json
+// @Param email query string true "邮箱"
+// @Success 200 {string} json "{"msg": "email check ok"}"
+// @Failure 400 {string} json "{"msg": "email check err"}"
+// @Router /emailCheck [get]
 func AddUserAPI(c *gin.Context) {
 	var u user.UserApi
 	err := c.Bind(&u)

@@ -26,7 +26,7 @@ func JwtToUserAPI(c *gin.Context) {
 func JwtOkAPI(c *gin.Context) {
 	u := new(user.UserApi)
 	u.Email = "leiju@outlook.com"
-	// u.GetUser()
+	u.GetUser()
 	msg := "JwtOK"
 	common.Rmsg(c, true, msg, u)
 }
