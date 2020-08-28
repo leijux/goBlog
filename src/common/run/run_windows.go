@@ -6,15 +6,11 @@ import (
 	"os/signal"
 	"time"
 
-	"goBlog/config"
 	"goBlog/log"
 
-	"github.com/gin-gonic/gin"
 	"github.com/valyala/fasthttp"
 	"github.com/valyala/fasthttp/fasthttpadaptor"
 )
-
-
 
 func run(prot string, handler http.Handler) {
 	srv := &fasthttp.Server{
