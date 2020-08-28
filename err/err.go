@@ -1,6 +1,6 @@
 package err
 
-import "errors"
+import "github.com/pkg/errors"
 
 var (
 	//ErrEnableValue enable err

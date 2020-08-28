@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
+
 // @Summary EmailCheckApi
 // @Description 验证邮箱
 // @Tags 测试

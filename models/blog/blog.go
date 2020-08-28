@@ -12,10 +12,18 @@ import (
 //Blog 博客
 type Blog struct {
 	gorm.Model
-	Title   string `gorm:"not null"              db:"title"   json:"title"     form:"title"    binding:"required"`
-	Content string `gorm:"type:text;not null"    db:"content" json:"content"   form:"content"  binding:"required"`
-	Email   string `gorm:"not null"              db:"author"  json:"author"    form:"author"   binding:"required"`
-	Likes   int    `db:"likes"   json:"likes"     form:"likes"`
+	Title   string `gorm:"not null"              db:"title"  `
+	Content string `gorm:"type:text;not null"    db:"content"`
+	Email   string `gorm:"not null;unique"       db:"author" `
+	Likes   int    `                             db:"likes"`       
+}
+
+//blog id 和创建时间
+type BlogApi struct{
+	Title   string `json:"title"     form:"title"    binding:"required"`
+	Content string `json:"content"   form:"content"  binding:"required"`
+	Email   string `json:"author"    form:"author"   binding:"required"`
+	Likes   int    `json:"likes"     form:"likes"`
 }
 
 var _ models.IModels = &Blog{}
