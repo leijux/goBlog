@@ -2,22 +2,25 @@ package login
 
 import (
 	"goBlog/database"
-	"goBlog/log"
+	"goBlog/database/orm"
 	"goBlog/models/user"
 	"goBlog/src/common"
 )
-
+const (
+	emptyString = ""
+)
 //login 登入结构体
 type Login struct {
-	Email string `db:"email"   `
-	Pwd   []byte `db:"password"`
+	Email string `gorm:"email"   `
+	Pwd   []byte `gorm:"password"`
 }
+
 type LoginApi struct {
-	Email string `form:"email" json:"email" binding:"required"`
+	Email string `form:"email" json:"email" binding:"required,email"`
 	Pwd   string `form:"pwd"   json:"pwd"   binding:"required"`
 }
 
-//TODO写到这里
+
 func (l LoginApi) toLogin() Login {
 	dk, _ := common.Scrypt(l.Pwd)
 	return Login{
@@ -27,21 +30,18 @@ func (l LoginApi) toLogin() Login {
 }
 
 //PwdCheck 验证登入
-func (login *Login) PwdCheck() (b bool, user user.User, err error) {
+func (login *LoginApi) PwdCheck() (b bool, userApi user.UserApi, err error) {
+	l:=login.toLogin()
+	u := new(user.User)
 
-	err = database.Db.Get(&user, "select * from user where email=? and password=?", login.Email, login.Pwd)
+	//err = database.Db.Get(&user, "select * from user where email=? and password=?", login.Email, login.Pwd)
+	err = orm.Db.Where("email = ? and password=?", l.Email, l.Pwd).First(u).Error
 	if err != nil {
-		log.Logger.Errorln(err)
 		b = false
 		return
 	}
-	if user.Email == "" {
-		b = false
-		return
-	}
-
 	b = true
-	user.Password = nil
+	userApi=u.ToUserApi()
 	return
 }
 
@@ -49,7 +49,7 @@ func (login *Login) PwdCheck() (b bool, user user.User, err error) {
 func (login *Login) EmailCheck() (b bool) {
 	var u user.User
 	database.Db.Get(&u, "select email from user where email=? ", login.Email)
-	if u.Email == "" {
+	if u.Email == emptyString {
 		b = true
 		return
 	}

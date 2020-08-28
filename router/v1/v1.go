@@ -16,7 +16,7 @@ func V1(router *gin.Engine) {
 		{ //logn
 			v1.POST("/logn", apis.AddUserAPI)          //注册
 			v1.GET("/emailCheck", apis.EmailCheckApi)  //邮箱验证api
-			v1.GET("/logn", middleware.LoginHandler()) //登入
+			v1.GET("/login", middleware.LoginHandler()) //登入
 		}
 
 		{ //user

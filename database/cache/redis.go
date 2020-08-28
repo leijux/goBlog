@@ -1,7 +1,6 @@
 package cache
 
 import (
-	"errors"
 	"time"
 
 	"goBlog/config"
@@ -10,6 +9,7 @@ import (
 
 	"github.com/go-redis/redis/v7"
 	"github.com/sirupsen/logrus"
+	"github.com/pkg/errors"
 )
 
 //Redisdb Redis缓存库链接对象
@@ -27,26 +27,24 @@ func init() {
 	pas := config.GetString("database.redis.password")
 	db := config.GetInt("database.redis.db")
 
-	redisdb = redis.NewClient(&redis.Options{
+	RClient := redis.NewClient(&redis.Options{
 		Addr:     addr,
 		Password: pas, // no password set
 		DB:       db,  // use default DB
 	})
 
-	pong, err := redisdb.Ping().Result()
+	pong, err := RClient.Ping().Result()
 	if err != nil {
 		log.Logger.WithFields(logrus.Fields{
 			"pong": pong,
 			"err":  err,
-		}).Fatalln()
+		}).Fatalln("ping failure")
 	}
-	
-	//TODO 测试时要清空 暂时不处理
-	redisdb.FlushDBAsync() //清空本缓存库数据 
-	log.Logger.WithFields(logrus.Fields{
-		"pong": pong,
-		"err":  err,
-	}).Infoln()
+	redisdb = RClient
+	if config.GetBool("gin.isDebugMode") {
+		//TODO  如果是测试模式
+		redisdb.FlushDBAsync() //清空本缓存库数据
+	}
 }
 
 //Get 得到序列化对象

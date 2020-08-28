@@ -1,7 +1,6 @@
 package apis
 
 import (
-	"errors"
 	"fmt"
 	"strconv"
 
@@ -12,6 +11,7 @@ import (
 	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
 )
 
 //AddBlogAPI 添加博客
@@ -19,28 +19,36 @@ func AddBlogAPI(c *gin.Context) {
 	var b blog.Blog
 	err := c.Bind(&b)
 	if err != nil {
-		msg := fmt.Sprintln("shoul bind err")
+		const msg string = "should bind err"
 		log.Logger.Errorln(err)
 		common.Rmsg(c, false, msg)
 		return
 	}
 	u, _ := c.Get(middleware.GetIdentityKey()) //得到用户信息
 	if v, ok := u.(*user.UserApi); ok {
-		if v.Email == b.Email {
-			id, err := b.AddBlog()
-			if err != nil {
-				msg := fmt.Sprintln("add blog err")
-				log.Logger.Errorln(err)
-				common.Rmsg(c, false, msg)
-				return
-			}
-			msg := fmt.Sprintf("add blog id")
-			common.Rmsg(c, true, msg, id)
-		} else {
-			msg := fmt.Sprintf("add blog err")
-			common.Rmsg(c, false, msg)
-			return
+		bol, err := addBlogAPI(v, b)
+		common.Rmsg(c, bol, err.Error())
+		return
+	}
+}
+
+func addBlogAPI(v *user.UserApi, b blog.Blog) (bool, error) {
+	if v.Email == b.Email {
+		//TODO  id没有处理
+		_, err := b.AddBlog()
+		if err != nil {
+			const msg string = "add blog err"
+			log.Logger.Errorln(err)
+			//common.Rmsg(c, false, msg)
+			return false, errors.Wrap(err, msg)
 		}
+		const msg string = "add blog id"
+		// common.Rmsg(c, true, msg, id)
+		return false, errors.New(msg)
+	} else {
+		const msg string = "add blog err"
+		// common.Rmsg(c, false, msg)
+		return false, errors.New(msg)
 	}
 }
 

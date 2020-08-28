@@ -18,7 +18,7 @@ var authMiddleware *jwt.GinJWTMiddleware
 func init() {
 	var err error
 	authMiddleware, err = jwt.New(&jwt.GinJWTMiddleware{
-		Realm:       "test zone",
+		Realm:       "gin jwt",
 		Key:         []byte("secret key"),
 		Timeout:     24 * time.Hour,
 		MaxRefresh:  24 * time.Hour,
@@ -38,21 +38,23 @@ func init() {
 			}
 		},
 		Authenticator: func(c *gin.Context) (interface{}, error) { //登入
-			var loginVals login.Login
+			var loginVals login.LoginApi
 			if err := c.ShouldBind(&loginVals); err != nil {
 				return "", jwt.ErrMissingLoginValues
 			}
-			if b, User, _ := loginVals.PwdCheck(); b {
-				return &User, nil
+			if b, User, err := loginVals.PwdCheck(); b {
+				
+				return &User, err
 			}
-			return nil, jwt.ErrFailedAuthentication
+			return nil, jwt.ErrFailedAuthentication//验证错误
 		},
-		// Authorizator: func(data interface{}, c *gin.Context) bool { //验证
-		// 	if _, ok := data.(*db.User); ok {
-		// 		return true
-		// 	}
-		// 	return false
-		// },
+		Authorizator: func(data interface{}, c *gin.Context) bool { //验证
+			// if _, ok := data.(*db.User); ok {
+			// 	return true
+			// }
+			// return false
+			return true
+		},
 		Unauthorized: func(c *gin.Context, code int, message string) {
 			c.JSON(code, gin.H{
 				"code":    code,

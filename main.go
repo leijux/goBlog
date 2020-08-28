@@ -2,6 +2,7 @@ package main
 
 import (
 	"goBlog/config"
+	"goBlog/database"
 	"goBlog/database/cache"
 	"goBlog/database/orm"
 	_ "goBlog/docs"
@@ -9,10 +10,11 @@ import (
 	"goBlog/models/blog"
 	"goBlog/models/user"
 	"goBlog/router"
-	"goBlog/src/common"
+	"goBlog/src/common/run"
 
 	"github.com/DeanThompson/ginpprof"
 	"github.com/gin-gonic/gin"
+	_ "github.com/mkevac/debugcharts"
 	"github.com/sirupsen/logrus"
 )
 
@@ -39,9 +41,9 @@ func init() {
 }
 
 func main() {
-
-	defer orm.Close() //关闭数据库
-	defer cache.Close()  //关闭缓存
+	defer database.Db.Close() //关闭数据库
+	defer orm.Close()         //关闭gorm
+	defer cache.Close()       //关闭缓存
 
 	isDebugMode = config.GetBool("gin.isDebugMode")
 
@@ -53,16 +55,19 @@ func main() {
 	//gin.DisableConsoleColor() //静止控制台颜色，防止有空格
 
 	r := setupRouter()
-	common.Run(r)
+	run.Run(r)
 }
 
 func setupRouter() (r *gin.Engine) {
 	r = gin.New()
 	router.InitRouter(r) //设置路由
-	webURL := config.GetString("gin.open")
+	//webURL := config.GetString("gin.open")
 	if isDebugMode { //判断模式，如果是debug模式则开启pprof
-		ginpprof.Wrap(r)       //go tool pprof -http=:8080 cpu.prof
-		go common.Open(webURL) // http://localhost:8000/
+		ginpprof.Wrap(r) //go tool pprof -http=:8080 cpu.prof
+		//go common.Open(webURL) // http://localhost:8000/
+		// go func() {
+		// 	log.Logger.Println(http.ListenAndServe("localhost:6060", nil))
+		// }()
 	}
 	return
 }
