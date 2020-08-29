@@ -16,7 +16,7 @@
     },
     "sqlite": {
       "driverName": "sqlite3",
-      "dataSourceName": ""
+      "dataSourceName": "./database/db"
     },
     "redis": {
       "isOpen": true,

@@ -1,20 +1,20 @@
 package main
 
 import (
+	_ "goBlog/docs"
 	"goBlog/config"
 	"goBlog/database"
 	"goBlog/database/cache"
 	"goBlog/database/orm"
-	_ "goBlog/docs"
 	"goBlog/log"
 	"goBlog/models/blog"
 	"goBlog/models/user"
 	"goBlog/router"
 	"goBlog/src/common/run"
 
+	_ "github.com/mkevac/debugcharts"
 	"github.com/DeanThompson/ginpprof"
 	"github.com/gin-gonic/gin"
-	_ "github.com/mkevac/debugcharts"
 	"github.com/sirupsen/logrus"
 )
 

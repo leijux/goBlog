@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
+	"os/exec"
 	"testing"
 
 	"goBlog/config"
@@ -21,12 +22,12 @@ func Test_DbPing(t *testing.T) {
 }
 
 var token string
-var r = setupRouter()
 var pwd = "12345678"
 var emeil = "leiju@outlook.com"
 
 func Test_PingRoute(t *testing.T) {
 
+	var r = setupRouter()
 	req, _ := http.NewRequest("GET", `/v1/logn?pwd=`+pwd+`&emeil=`+emeil, nil)
 	w := httptest.NewRecorder()
 	r.ServeHTTP(w, req)
@@ -57,6 +58,10 @@ func Test_PingRoute(t *testing.T) {
 func Test_config(t *testing.T) {
 	config.Set("test.leiju", "test")
 }
-func Test_gorm(t *testing.T) {
 
+func Test_Exec(t *testing.T) {
+	err := exec.Command("powershell", "go", "build", `-ldflags="-s -w"`, "-o", "./build/app.exe").Run()
+	if err != nil {
+		t.Log(err)
+	}
 }
