@@ -1,14 +1,11 @@
 package config
 
 import (
-	myerr "goBlog/err"
-
 	"github.com/golobby/config"
 	"github.com/golobby/config/feeder"
+	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 )
-
-
 
 const (
 	//JSONPath 文件路径
@@ -17,6 +14,10 @@ const (
 	Mysql = "mysql"
 	//Sqlite 字段
 	Sqlite = "sqlite"
+)
+
+var (
+	ErrOpenFile = errors.New("open err")
 )
 
 //cfg 配置文件对象
@@ -28,7 +29,7 @@ func init() {
 		Feeder: feeder.Json{Path: JSONPath},
 	})
 	if err != nil {
-		log.Fatalln(myerr.ErrOpenFile, err)
+		log.Fatalln(errors.Wrap(err, ErrOpenFile.Error()))
 	}
 }
 
