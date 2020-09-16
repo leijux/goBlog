@@ -9,7 +9,7 @@ import (
 	"goBlog/log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sirupsen/logrus"
+	"go.uber.org/zap"
 	"golang.org/x/crypto/scrypt"
 )
 
@@ -38,7 +38,8 @@ func Rmsg(c *gin.Context, code bool, msg string, data ...interface{}) {
 	if data != nil {
 		json["data"] = data[0]
 	}
-	log.Logger.WithFields(logrus.Fields(json)).Infoln()
+	//log.Logger.WithFields(logrus.Fields(json)).Infoln()
+
 	c.JSON(http.StatusOK, json)
 }
 
@@ -46,7 +47,9 @@ func Scrypt(paw string) (dk []byte, err error) {
 	salt := "leiju"
 	dk, err = scrypt.Key([]byte(paw), []byte(salt), 16384, 8, 1, 32)
 	if err != nil {
-		log.Logger.Errorln(err)
+		log.Error("Scrypt err",
+			zap.Error(err),
+		)
 		return
 	}
 	return

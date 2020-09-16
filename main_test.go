@@ -10,7 +10,7 @@ import (
 	"goBlog/database"
 
 	"github.com/buger/jsonparser"
-	_ "github.com/go-sql-driver/mysql"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -64,4 +64,14 @@ func Test_Exec(t *testing.T) {
 	if err != nil {
 		t.Log(err)
 	}
+}
+func TestPingRoute(t *testing.T) {
+	router := setupRouter()
+
+	w := httptest.NewRecorder()
+	req, _ := http.NewRequest("GET", "/ping", nil)
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 200, w.Code)
+	assert.Equal(t, "pong", w.Body.String())
 }

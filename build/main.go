@@ -3,44 +3,44 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"runtime"
 )
 
 func main() {
-	path := "../build/app"
-	fileinfo, err := ioutil.ReadDir(path)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	if len(fileinfo) != 0 {
-		for _, v := range fileinfo {
-			filename := v.Name()
-			if filename == "main.go"||filename=="build.exe"||filename=="__debug_bin" {
-				continue
-			}
-			if v.IsDir() {
-				err = os.RemoveAll(filepath.Join(path, filename))
-				if err != nil {
-					log.Fatalln(err)
-				}
-			} else {
-				err = os.Remove(filepath.Join(path, filename))
-				if err != nil {
-					log.Fatalln(err)
-				}
-			}
-		}
-	}
+	// path := "./app"
+	// fileinfo, err := ioutil.ReadDir(path)
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+	// if len(fileinfo) != 0 {
+	// 	for _, v := range fileinfo {
+	// 		filename := v.Name()
+	// 		// if filename == "main.go"||filename=="build.exe"||filename=="__debug_bin" {
+	// 		// 	continue
+	// 		// }
+	// 		if v.IsDir() {
+	// 			err = os.RemoveAll(filepath.Join(path, filename))
+	// 			if err != nil {
+	// 				log.Fatalln(err)
+	// 			}
+	// 		} else {
+	// 			err = os.Remove(filepath.Join(path, filename))
+	// 			if err != nil {
+	// 				log.Fatalln(err)
+	// 			}
+	// 		}
+	// 	}
+	// }
+	var err error
 	switch runtime.GOOS {
 	case "linux":
-		err = exec.Command("sh", "go", "build", `-ldflags="-s -w"`, "-o", "./app/app").Run()
+		err = exec.Command("sh", "go", "build", `-tags=jsoniter`, `-ldflags="-s -w"`, "-o", "./app/app").Run()
 	case "windows":
-		err = exec.Command("powershell", "go", "build", `-ldflags="-s -w"`, "-o", "./app/app.exe").Run()
+		//go build `-tags=jsoniter` -ldflags="-s -w" -o "./build/app/app.exe"
+		err = exec.Command("powershell", "go", "build", `-tags=jsoniter`, `-ldflags="-s -w"`, "-o", "../build/app/app.exe").Run()
 		//err = exec.Command("go", "build", `-ldflags="-s -w"`, "-o", "./build/app.exe").Run()
 	default:
 		err = fmt.Errorf("GOOS err")
@@ -48,16 +48,17 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	createLog()
-	createConfig()
+
+	// createLog()
+	// createConfig()
 }
 
 func createLog() {
-	err := os.MkdirAll("../build/app/log/gin_log", os.ModePerm)
+	err := os.MkdirAll("./app/log/gin_log", os.ModePerm)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	_, err = os.Create("../build/app/log/gin_log/system.log")
+	_, err = os.Create("./app/log/gin_log/system.log")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -68,8 +69,8 @@ func createConfig() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	os.Mkdir("../build/app/config", os.ModePerm)
-	json, err := os.Create("../build/app/config/config.json")
+	os.Mkdir("./app/config", os.ModePerm)
+	json, err := os.Create("./app/config/config.json")
 	if err != nil {
 		log.Fatalln(err)
 	}

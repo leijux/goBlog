@@ -6,9 +6,11 @@ import (
 	"goBlog/models/user"
 	"goBlog/src/common"
 )
+
 const (
 	emptyString = ""
 )
+
 //login 登入结构体
 type Login struct {
 	Email string `gorm:"email"   `
@@ -20,7 +22,6 @@ type LoginApi struct {
 	Pwd   string `form:"pwd"   json:"pwd"   binding:"required"`
 }
 
-
 func (l LoginApi) toLogin() Login {
 	dk, _ := common.Scrypt(l.Pwd)
 	return Login{
@@ -31,7 +32,7 @@ func (l LoginApi) toLogin() Login {
 
 //PwdCheck 验证登入
 func (login *LoginApi) PwdCheck() (b bool, userApi user.UserApi, err error) {
-	l:=login.toLogin()
+	l := login.toLogin()
 	u := new(user.User)
 
 	//err = database.Db.Get(&user, "select * from user where email=? and password=?", login.Email, login.Pwd)
@@ -41,7 +42,7 @@ func (login *LoginApi) PwdCheck() (b bool, userApi user.UserApi, err error) {
 		return
 	}
 	b = true
-	userApi=u.ToUserApi()
+	userApi = u.ToUserApi()
 	return
 }
 

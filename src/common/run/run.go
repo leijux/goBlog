@@ -11,7 +11,7 @@ import (
 func Run(router *gin.Engine) {
 	prot := config.GetString("gin.prot")
 	if prot == "" {
-		log.Logger.Fatalln("prot is empty")
+		log.Fatalln("prot is empty")
 	}
 	run(prot, router)
 }

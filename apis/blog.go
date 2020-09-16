@@ -16,38 +16,40 @@ import (
 
 //AddBlogAPI 添加博客
 func AddBlogAPI(c *gin.Context) {
-	var b blog.Blog
+	b := blog.NewBolg()
 	err := c.Bind(&b)
 	if err != nil {
 		const msg string = "should bind err"
-		log.Logger.Errorln(err)
+		log.Errorln(err)
 		common.Rmsg(c, false, msg)
 		return
 	}
 	u, _ := c.Get(middleware.GetIdentityKey()) //得到用户信息
 	if v, ok := u.(*user.UserApi); ok {
 		bol, err := addBlogAPI(v, b)
-		common.Rmsg(c, bol, err.Error())
+		if err != nil {
+			log.Errorln(err)
+			common.Rmsg(c, bol, err.Error())
+			return
+		}
+		const msg = "success !"
+		common.Rmsg(c, bol, msg)
 		return
 	}
 }
 
-func addBlogAPI(v *user.UserApi, b blog.Blog) (bool, error) {
+func addBlogAPI(v *user.UserApi, b blog.BlogApi) (bool, error) {
 	if v.Email == b.Email {
-		//TODO  id没有处理
-		_, err := b.AddBlog()
+		bol, err := b.CreateBlog()
 		if err != nil {
 			const msg string = "add blog err"
-			log.Logger.Errorln(err)
-			//common.Rmsg(c, false, msg)
-			return false, errors.Wrap(err, msg)
+			log.Errorln(err)
+			return bol, errors.Wrap(err, msg)
 		}
-		const msg string = "add blog id"
-		// common.Rmsg(c, true, msg, id)
-		return false, errors.New(msg)
+		const msg string = "add blog success"
+		return bol, errors.New(msg)
 	} else {
 		const msg string = "add blog err"
-		// common.Rmsg(c, false, msg)
 		return false, errors.New(msg)
 	}
 }
@@ -65,7 +67,7 @@ func GetBlogsAPI(c *gin.Context) {
 	}
 	if err != nil {
 		msg := fmt.Sprintln("get blog err")
-		log.Logger.Errorln(msg, err)
+		log.Errorln(msg, err)
 		common.Rmsg(c, false, msg)
 		return
 	}

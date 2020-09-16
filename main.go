@@ -1,21 +1,22 @@
 package main
 
 import (
-	_ "goBlog/docs"
+	"net/http"
+
 	"goBlog/config"
 	"goBlog/database"
 	"goBlog/database/cache"
 	"goBlog/database/orm"
+	_ "goBlog/docs"
 	"goBlog/log"
 	"goBlog/models/blog"
 	"goBlog/models/user"
 	"goBlog/router"
 	"goBlog/src/common/run"
 
-	_ "github.com/mkevac/debugcharts"
 	"github.com/DeanThompson/ginpprof"
 	"github.com/gin-gonic/gin"
-	"github.com/sirupsen/logrus"
+	_ "github.com/mkevac/debugcharts"
 )
 
 // @title Swagger Example API
@@ -48,8 +49,8 @@ func main() {
 	isDebugMode = config.GetBool("gin.isDebugMode")
 
 	if !isDebugMode { //判断模式，如果是debug模式则开启pprof
-		gin.SetMode(gin.ReleaseMode)           //发布模式
-		log.Logger.SetLevel(logrus.ErrorLevel) // 设置日志级别 在什么级别之上
+		gin.SetMode(gin.ReleaseMode) //发布模式
+		//log.Logger.SetLevel(logrus.ErrorLevel) // 设置日志级别 在什么级别之上
 	}
 
 	//gin.DisableConsoleColor() //静止控制台颜色，防止有空格
@@ -65,9 +66,9 @@ func setupRouter() (r *gin.Engine) {
 	if isDebugMode { //判断模式，如果是debug模式则开启pprof
 		ginpprof.Wrap(r) //go tool pprof -http=:8080 cpu.prof
 		//go common.Open(webURL) // http://localhost:8000/
-		// go func() {
-		// 	log.Logger.Println(http.ListenAndServe("localhost:6060", nil))
-		// }()
+		go func() {
+			log.Debug(http.ListenAndServe("localhost:6060", nil).Error())
+		}()
 	}
 	return
 }

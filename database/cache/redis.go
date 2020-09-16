@@ -8,8 +8,8 @@ import (
 	"goBlog/models"
 
 	"github.com/go-redis/redis/v7"
-	"github.com/sirupsen/logrus"
 	"github.com/pkg/errors"
+	"go.uber.org/zap"
 )
 
 //Redisdb Redis缓存库链接对象
@@ -35,10 +35,11 @@ func init() {
 
 	pong, err := RClient.Ping().Result()
 	if err != nil {
-		log.Logger.WithFields(logrus.Fields{
-			"pong": pong,
-			"err":  err,
-		}).Fatalln("ping failure")
+		log.Fatal("ping failure",
+			zap.String("pong", pong),
+			zap.Error(err),
+		)
+
 	}
 	redisdb = RClient
 	if config.GetBool("gin.isDebugMode") {

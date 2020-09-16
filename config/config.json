@@ -6,7 +6,7 @@
   },
   "log": {
     "logFilePath": "./log/gin_log",
-    "logFileName": "system.log"
+    "logFileName": "log"
   },
   "database": {
     "enable": "mysql",

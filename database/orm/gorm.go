@@ -3,28 +3,72 @@ package orm
 import (
 	"goBlog/config"
 	"goBlog/log"
+	"time"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 var Db *gorm.DB
 
 func init() {
 	var err error
-	DriverName := config.GetString("database.mysql.driverName")
+
+	//DriverName := config.GetString("database.mysql.driverName")
+
 	DataSourceName := config.GetString("database.mysql.dataSourceName")
-	Db, err = gorm.Open(DriverName, DataSourceName)
-	Db.SingularTable(true)//不加s
-	//Db.SetLogger(log.Logger)
-	Db.LogMode(false)
+
+	Db, err = gorm.Open(mysql.Open(DataSourceName), &gorm.Config{
+		Logger: logger.New(
+			log.NewLog(),
+			logger.Config{
+				SlowThreshold: time.Second,   // 慢 SQL 阈值
+				LogLevel:      logger.Silent, // Log level
+				Colorful:      false,         // 禁用彩色打印},
+			},
+		),
+		//禁用 事务
+		SkipDefaultTransaction: true,
+		//创建 prepared statement 并缓存，可以提高后续的调用速度
+		PrepareStmt: true,
+	})
+
+	// Db.SingularTable(true) //不加s
+	// //Db.SetLogger(log.Logger)
+	// Db.LogMode(false)
+
 	if err != nil {
-		log.Logger.Fatalln(err)
+		log.Fatalln(err)
+	}
+	// timeoutContext, _ := context.WithTimeout(context.Background(), time.Second)
+	// Db = db.WithContext(timeoutContext)
+
+	sqlDB, err := Db.DB()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	// SetMaxIdleConns 设置空闲连接池中连接的最大数量
+	sqlDB.SetMaxIdleConns(10)
+
+	// SetMaxOpenConns 设置打开数据库连接的最大数量。
+	sqlDB.SetMaxOpenConns(100)
+
+	// SetConnMaxLifetime 设置了连接可复用的最大时间。
+	sqlDB.SetConnMaxLifetime(time.Hour)
+}
+
+//TODO 带判断
+func Close() {
+	if Db != nil {
+		sqlDB, err := Db.DB()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		sqlDB.Close()
 	}
 }
 
-func Close() {
-	if Db != nil {
-		Db.Close()
-	}
+func Create(value interface{}) *gorm.DB {
+	return Db.Create(value)
 }

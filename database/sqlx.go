@@ -24,10 +24,10 @@ func init() {
 		DataSourceName := config.GetString("database.sqlite.dataSourceName")
 		Db, err = sqlx.Connect(DriverName, DataSourceName)
 	default:
-		log.Logger.Fatalln(myerr.ErrEnableValue)
+		log.Fatalln(myerr.ErrEnableValue)
 	}
 	if err != nil {
-		log.Logger.Fatalln(err)
+		log.Fatalln(err)
 	}
 	Db.SetMaxIdleConns(10) //设置连接池中的保持连接的最大连接数
 }

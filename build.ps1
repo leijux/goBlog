@@ -1,1 +1,1 @@
-yaegi .\build_go_windows
+go build `-tags=jsoniter` -ldflags="-s -w" -o "./build/app/app.exe"

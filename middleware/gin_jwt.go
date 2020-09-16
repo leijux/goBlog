@@ -6,11 +6,13 @@ import (
 	"goBlog/log"
 	"goBlog/models/login"
 	"goBlog/models/user"
+
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
-var identityKey = "Email"
+const identityKey = "Email"
 
 //AuthMiddleware jwt
 var authMiddleware *jwt.GinJWTMiddleware
@@ -24,7 +26,7 @@ func init() {
 		MaxRefresh:  24 * time.Hour,
 		IdentityKey: identityKey,
 		PayloadFunc: func(data interface{}) jwt.MapClaims { //负载
-			if v, ok := data.(*user.User); ok {
+			if v, ok := data.(*user.UserApi); ok {
 				return jwt.MapClaims{
 					identityKey: v.Email,
 				}
@@ -33,7 +35,7 @@ func init() {
 		},
 		IdentityHandler: func(c *gin.Context) interface{} { //解析负载
 			claims := jwt.ExtractClaims(c)
-			return &user.User{
+			return &user.UserApi{
 				Email: claims[identityKey].(string),
 			}
 		},
@@ -43,18 +45,19 @@ func init() {
 				return "", jwt.ErrMissingLoginValues
 			}
 			if b, User, err := loginVals.PwdCheck(); b {
-				
+
 				return &User, err
 			}
-			return nil, jwt.ErrFailedAuthentication//验证错误
+			return nil, jwt.ErrFailedAuthentication //验证错误
 		},
-		Authorizator: func(data interface{}, c *gin.Context) bool { //验证
-			// if _, ok := data.(*db.User); ok {
-			// 	return true
-			// }
-			// return false
-			return true
-		},
+		// Authorizator: func(data interface{}, c *gin.Context) bool { //验证
+		// 	// if _, ok := data.(*db.User); ok {
+		// 	// 	return true
+		// 	// }
+		// 	// return false
+		// 	return true
+		// },
+
 		Unauthorized: func(c *gin.Context, code int, message string) {
 			c.JSON(code, gin.H{
 				"code":    code,
@@ -81,7 +84,9 @@ func init() {
 	})
 
 	if err != nil {
-		log.Logger.Fatalln("JWT Error:" + err.Error())
+		log.Fatal("JWT Error:",
+			zap.Error(err),
+		)
 	}
 }
 
@@ -115,4 +120,11 @@ func LoginHandler() gin.HandlerFunc {
 //GetIdentityKey 得到 IdentityKey
 func GetIdentityKey() string {
 	return authMiddleware.IdentityKey
+}
+
+func RefreshResponse() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		//	authMiddleware.RefreshResponse(c,1,"ss",24 * time.Hour)
+		//authMiddleware.LogoutHandler()
+	}
 }

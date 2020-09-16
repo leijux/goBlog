@@ -6,15 +6,18 @@ import (
 	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
+	"github.com/pkg/errors"
 )
 
 //AddUserAPI 添加用户
 func AddUserAPI(c *gin.Context) {
-	var u user.UserApi
+	u := user.NewUser()
+
 	err := c.Bind(&u)
 	if err != nil {
 		const msg = "shoul bind err"
-		log.Logger.Errorln(err)
+		errors.WithMessage(err, msg)
+		log.Errorf("%+v ", err)
 		common.Rmsg(c, false, msg)
 		return
 	}
@@ -29,7 +32,10 @@ func addUserAPI(u user.UserApi) (string, bool) {
 		const msg = "add user success"
 		return msg, b
 	}
+
 	const msg = "add user err"
-	log.Logger.Errorln(err)
+	if err != nil {
+		log.Errorf("%+v", err)
+	}
 	return msg, b
 }

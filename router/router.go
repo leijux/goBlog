@@ -13,7 +13,7 @@ import (
 )
 
 func InitRouter(router *gin.Engine) {
-	router.Use(gin.Recovery(), middleware.LoggerToFile(), middleware.Cors())
+	router.Use(gin.Recovery(), middleware.Log(), middleware.Cors())
 	router.Static("/files", "./web")
 	router.GET("/", apis.Index)
 	//添加自定义 tag
