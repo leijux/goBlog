@@ -19,10 +19,10 @@ func run(prot string, handler http.Handler) {
 			MaxHeaderBytes: 1 << 20,
 		},
 	}); err != nil {
-		log.Logger.Fatalln(err)
+		log.Fatalln(err)
 	}
 	if err := server.Run(); err != nil && err != http.ErrServerClosed {
-		log.Logger.Fatalln(err)
+		log.Fatalln(err)
 	}
 	// if err := endless.ListenAndServe(prot, handler); err != nil {
 	// 	log.Logger.Fatalf("listen: %s\n", err)

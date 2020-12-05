@@ -26,7 +26,7 @@ func init() {
 		MaxRefresh:  24 * time.Hour,
 		IdentityKey: identityKey,
 		PayloadFunc: func(data interface{}) jwt.MapClaims { //负载
-			if v, ok := data.(*user.UserApi); ok {
+			if v, ok := data.(user.UserApi); ok {
 				return jwt.MapClaims{
 					identityKey: v.Email,
 				}
@@ -35,7 +35,7 @@ func init() {
 		},
 		IdentityHandler: func(c *gin.Context) interface{} { //解析负载
 			claims := jwt.ExtractClaims(c)
-			return &user.UserApi{
+			return user.UserApi{
 				Email: claims[identityKey].(string),
 			}
 		},
@@ -45,8 +45,7 @@ func init() {
 				return "", jwt.ErrMissingLoginValues
 			}
 			if b, User, err := loginVals.PwdCheck(); b {
-
-				return &User, err
+				return User, err
 			}
 			return nil, jwt.ErrFailedAuthentication //验证错误
 		},

@@ -1,0 +1,28 @@
+{
+    "gin": {
+      "isDebugMode": true,
+      "open": "http://localhost:6060/debug/statsviz/",
+      "prot": ":8000"
+    },
+    "log": {
+      "logFilePath": "./log/gin_log",
+      "logFileName": "log"
+    },
+    "database": {
+      "enable": "mysql",
+      "mysql": {
+        "driverName": "mysql",
+        "dataSourceName": "root:123456@tcp(47.101.147.15:3306)/leiju?parseTime=true"
+      },
+      "sqlite": {
+        "driverName": "sqlite3",
+        "dataSourceName": "./database/db.sqlite3"
+      },
+      "redis": {
+        "isOpen": true,
+        "addr": "47.101.147.15:6379",
+        "db": 0,
+        "password": ""
+      }
+    }
+  }

@@ -1,35 +1,54 @@
 package config
 
 import (
+	"log"
+	"sync"
+
 	"github.com/golobby/config"
 	"github.com/golobby/config/feeder"
 	"github.com/pkg/errors"
-	log "github.com/sirupsen/logrus"
 )
 
 const (
-	//JSONPath 文件路径
-	JSONPath = "./config/config.json"
 	//Mysql 字段
 	Mysql = "mysql"
 	//Sqlite 字段
-	Sqlite = "sqlite"
+	Sqlite = "sqlite3"
 )
 
 var (
 	ErrOpenFile = errors.New("open err")
+
+	//JSONPath 文件路径
+	JSONPath = "./config/config.json"
 )
 
 //cfg 配置文件对象
 var cfg *config.Config
+var once sync.Once
 
+// func Init(path string) {
+// 	once.Do(func() {
+// 		configInit(path)
+// 	})
+// }
+
+// func configInit(path string) {
+// 	var err error
+// 	cfg, err = config.New(config.Options{
+// 		Feeder: feeder.Json{Path: path},
+// 	})
+// 	if err != nil {
+// 		log.Fatalf("%+v", errors.Wrap(err, ErrOpenFile.Error()))
+// 	}
+// }
 func init() {
 	var err error
 	cfg, err = config.New(config.Options{
 		Feeder: feeder.Json{Path: JSONPath},
 	})
 	if err != nil {
-		log.Fatalln(errors.Wrap(err, ErrOpenFile.Error()))
+		log.Fatalf("%+v", errors.Wrap(err, ErrOpenFile.Error()))
 	}
 }
 
@@ -37,7 +56,7 @@ func init() {
 func GetString(key string) string {
 	j, err := cfg.GetString(key)
 	if err != nil {
-		log.Errorln(err)
+		log.Fatalln(err)
 		return ""
 	}
 	return j
@@ -47,7 +66,7 @@ func GetString(key string) string {
 func GetBool(key string) bool {
 	j, err := cfg.GetBool(key)
 	if err != nil {
-		log.Errorln(err)
+		log.Fatalln(err)
 		return false
 	}
 	return j
@@ -56,8 +75,11 @@ func GetBool(key string) bool {
 //GetInt 返回int
 func GetInt(key string) int {
 	j, err := cfg.GetInt(key)
+	if j == 0 {
+		return j
+	}
 	if err != nil {
-		//log.Errorln(err)
+		log.Fatalln(err)
 		return 0
 	}
 	return j
@@ -67,7 +89,7 @@ func GetInt(key string) int {
 func Get(key string) (value interface{}) {
 	value, err := cfg.Get(key)
 	if err != nil {
-		log.Errorln(err)
+		log.Fatalln(err)
 		return
 	}
 	return

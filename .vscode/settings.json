@@ -1,15 +1,5 @@
 {
-    "sqltools.connections": [
-        {
-            "database": "leiju",
-            "dialect": "MySQL",
-            "name": "leiju",
-            "password": "123456",
-            "port": 3306,
-            "server": "47.101.147.15",
-            "username": "root"
-        }
-    ],
+    
     "cSpell.words": [
         "Infoln",
         "gorm"

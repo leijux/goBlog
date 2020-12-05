@@ -1,7 +1,6 @@
 package apis
 
 import (
-	"fmt"
 	"strconv"
 
 	"goBlog/log"
@@ -12,23 +11,24 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
+	"go.uber.org/zap"
 )
 
 //AddBlogAPI 添加博客
 func AddBlogAPI(c *gin.Context) {
-	b := blog.NewBolg()
+	b := blog.NewBlog()
 	err := c.Bind(&b)
 	if err != nil {
 		const msg string = "should bind err"
-		log.Errorln(err)
+		log.Errorf("%+v", err)
 		common.Rmsg(c, false, msg)
 		return
 	}
 	u, _ := c.Get(middleware.GetIdentityKey()) //得到用户信息
-	if v, ok := u.(*user.UserApi); ok {
+	if v, ok := u.(user.UserApi); ok {
 		bol, err := addBlogAPI(v, b)
 		if err != nil {
-			log.Errorln(err)
+			log.Errorf("%+v", err)
 			common.Rmsg(c, bol, err.Error())
 			return
 		}
@@ -38,16 +38,14 @@ func AddBlogAPI(c *gin.Context) {
 	}
 }
 
-func addBlogAPI(v *user.UserApi, b blog.BlogApi) (bool, error) {
+func addBlogAPI(v user.UserApi, b blog.BlogApi) (bool, error) {
 	if v.Email == b.Email {
 		bol, err := b.CreateBlog()
 		if err != nil {
 			const msg string = "add blog err"
-			log.Errorln(err)
 			return bol, errors.Wrap(err, msg)
 		}
-		const msg string = "add blog success"
-		return bol, errors.New(msg)
+		return bol, nil
 	} else {
 		const msg string = "add blog err"
 		return false, errors.New(msg)
@@ -56,42 +54,65 @@ func addBlogAPI(v *user.UserApi, b blog.BlogApi) (bool, error) {
 
 //GetBlogsAPI 有作者就返回作者的分页  没有就返回全部的分页
 func GetBlogsAPI(c *gin.Context) {
-	page := c.DefaultQuery("page", "1")
-	perpPage := c.DefaultQuery("per_page", "5")
-	email := c.Query("email")
-	p, err := strconv.Atoi(page)
-	pp, err := strconv.Atoi(perpPage)
-
-	if pp <= 0 || p <= 0 {
-		err = errors.New("page/perpPage Less than 0")
-	}
+	page, err := strconv.Atoi(c.DefaultQuery("page", "1"))
 	if err != nil {
-		msg := fmt.Sprintln("get blog err")
-		log.Errorln(msg, err)
+		const msg = "page err"
+		log.Error(msg,
+			zap.Int("page", page),
+		)
 		common.Rmsg(c, false, msg)
 		return
 	}
-	if email == "" {
-		var b blog.Blog
-		//page=2&per_page=100
-		bs, err := b.GetBlogs(p, pp)
+	if page <= 0 {
+		page = 1
+	}
+	pageSize, err := strconv.Atoi(c.DefaultQuery("page_size", "5"))
+	if err != nil {
+		const msg = "pageSize err"
+		log.Error(msg,
+			zap.Int("page_size", pageSize),
+		)
+		common.Rmsg(c, false, msg)
+		return
+	}
+	switch {
+	case pageSize > 50:
+		pageSize = 50
+	case pageSize <= 0:
+		pageSize = 5
+	}
+
+	authoe := c.Query("authoe")
+	if authoe != "" {
+		bs, err := getAuthoeBlogs(authoe, page, pageSize)
 		if err != nil {
-			common.Rmsg(c, false, err.Error())
-			return
-		}
-		common.Rmsg(c, true, "", bs)
-	} else {
-		b := new(blog.Blog)
-		//page=2&per_page=100
-		b.Email = email
-		bs, err := b.AuthoeToBlogs(p, pp)
-		if err != nil {
+			log.Errorf("%+v", err)
 			common.Rmsg(c, false, err.Error())
 			return
 		}
 		common.Rmsg(c, true, "", bs)
 		return
 	}
+	bs, err := getBlogs(page, pageSize)
+	if err != nil {
+		log.Errorf("%+v", err)
+		common.Rmsg(c, false, err.Error())
+		return
+	}
+	common.Rmsg(c, true, "", bs)
+}
+
+func getBlogs(page, pageSize int) ([]blog.BlogApi, error) {
+	b := blog.NewBlog()
+	bs, err := b.GetBlogs(page, pageSize)
+	return bs, err
+}
+
+func getAuthoeBlogs(email string, page, pageSize int) ([]blog.BlogApi, error) {
+	b := blog.NewBlog()
+	b.Email = email
+	bs, err := b.AuthoeToBlogs(page, pageSize)
+	return bs, err
 }
 
 //UpGlog 更新文章
@@ -101,20 +122,20 @@ func UpGlog() {
 
 //BlogSizeAPI 得到文章数量
 func BlogSizeAPI(c *gin.Context) {
-	var b blog.Blog
-	a, err := b.Count()
+	i, err := blog.Count()
 	if err != nil {
+		log.Errorf("%+v", err)
 		common.Rmsg(c, false, "")
 		return
 	}
-	common.Rmsg(c, true, "", a)
+	common.Rmsg(c, true, "", i)
 }
 
 //GetTopAPI 得到to排名
 func GetTopAPI(c *gin.Context) {
-	var b blog.Blog
-	bs, err := b.GetTop()
+	bs, err := blog.GetTop()
 	if err != nil {
+		log.Errorf("%+v", err)
 		common.Rmsg(c, false, "")
 		return
 	}

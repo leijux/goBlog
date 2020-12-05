@@ -1,9 +1,8 @@
 package apis
 
 import (
-	"net/http"
-
 	"goBlog/models/blog"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,12 +12,10 @@ import (
 // @Accept json
 // @Success 200 {json} string "{"msg": "test success！"}"
 // @Router / [get]
-func Index(c *gin.Context) {
-	//c.String(http.StatusOK, "this test!")
-	var b blog.Blog
-	i, _ := b.Count()
-	c.JSON(http.StatusOK, gin.H{
-		"msg":  "test success!",
-		"data": i,
-	})
+func Index(c *gin.Context) (bool, string, interface{}) {
+	return index(c)
+}
+func index(c *gin.Context) (bool, string, interface{}) {
+	i, _ := blog.Count()
+	return true, "test success!", i
 }

@@ -1,22 +1,23 @@
 package main
 
 import (
-	"net/http"
-
 	"goBlog/config"
-	"goBlog/database"
 	"goBlog/database/cache"
 	"goBlog/database/orm"
 	_ "goBlog/docs"
 	"goBlog/log"
 	"goBlog/models/blog"
+	"goBlog/models/comment"
+	"goBlog/models/likes"
 	"goBlog/models/user"
 	"goBlog/router"
+	"goBlog/src/common"
 	"goBlog/src/common/run"
+	"net/http"
 
 	"github.com/DeanThompson/ginpprof"
+	"github.com/arl/statsviz"
 	"github.com/gin-gonic/gin"
-	_ "github.com/mkevac/debugcharts"
 )
 
 // @title Swagger Example API
@@ -38,13 +39,22 @@ var isDebugMode bool
 
 func init() {
 	// 创建表时添加表后缀
-	orm.Db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(new(user.User), new(blog.Blog))
+	err := orm.Db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
+		new(user.User),
+		new(blog.Blog),
+		new(likes.Likes),
+		new(comment.Comment),
+	)
+
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func main() {
-	defer database.Db.Close() //关闭数据库
-	defer orm.Close()         //关闭gorm
-	defer cache.Close()       //关闭缓存
+	defer orm.Close()   //关闭gorm
+	defer cache.Close() //关闭缓存
+
 
 	isDebugMode = config.GetBool("gin.isDebugMode")
 
@@ -62,11 +72,13 @@ func main() {
 func setupRouter() (r *gin.Engine) {
 	r = gin.New()
 	router.InitRouter(r) //设置路由
-	//webURL := config.GetString("gin.open")
+	webURL := config.GetString("gin.open")
 	if isDebugMode { //判断模式，如果是debug模式则开启pprof
-		ginpprof.Wrap(r) //go tool pprof -http=:8080 cpu.prof
-		//go common.Open(webURL) // http://localhost:8000/
+		ginpprof.Wrap(r)       //go tool pprof -http=:8080 cpu.prof
+		go common.Open(webURL) // http://localhost:8000/
+		statsviz.RegisterDefault()
 		go func() {
+			// http://localhost:6060/debug/statsviz/
 			log.Debug(http.ListenAndServe("localhost:6060", nil).Error())
 		}()
 	}

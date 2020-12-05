@@ -34,13 +34,14 @@ func main() {
 	// 		}
 	// 	}
 	// }
+	//go  build  -tags=jsoniter -o ./build/app/app.exe
 	var err error
 	switch runtime.GOOS {
 	case "linux":
 		err = exec.Command("sh", "go", "build", `-tags=jsoniter`, `-ldflags="-s -w"`, "-o", "./app/app").Run()
 	case "windows":
 		//go build `-tags=jsoniter` -ldflags="-s -w" -o "./build/app/app.exe"
-		err = exec.Command("powershell", "go", "build", `-tags=jsoniter`, `-ldflags="-s -w"`, "-o", "../build/app/app.exe").Run()
+		err = exec.Command("cmd", "go", "build", `-tags=jsoniter`, `-ldflags="-s -w"`, "-o", "../build/app/app.exe").Run()
 		//err = exec.Command("go", "build", `-ldflags="-s -w"`, "-o", "./build/app.exe").Run()
 	default:
 		err = fmt.Errorf("GOOS err")

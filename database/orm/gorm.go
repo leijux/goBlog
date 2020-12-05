@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"gorm.io/driver/mysql"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
@@ -16,12 +17,21 @@ func init() {
 	var err error
 
 	//DriverName := config.GetString("database.mysql.driverName")
+	var dialector gorm.Dialector
+	switch config.GetString("database.enable") {
+	case config.Mysql:
+		DataSourceName := config.GetString("database.mysql.dataSourceName")
+		dialector = mysql.Open(DataSourceName)
+	case config.Sqlite:
+		DataSourceName := config.GetString("database.sqlite.dataSourceName")
+		dialector = sqlite.Open(DataSourceName)
+	default:
+		log.Fatalln("db err")
+	}
 
-	DataSourceName := config.GetString("database.mysql.dataSourceName")
-
-	Db, err = gorm.Open(mysql.Open(DataSourceName), &gorm.Config{
+	Db, err = gorm.Open(dialector, &gorm.Config{
 		Logger: logger.New(
-			log.NewLog(),
+			log.NewStdLog(),
 			logger.Config{
 				SlowThreshold: time.Second,   // 慢 SQL 阈值
 				LogLevel:      logger.Silent, // Log level
@@ -32,6 +42,8 @@ func init() {
 		SkipDefaultTransaction: true,
 		//创建 prepared statement 并缓存，可以提高后续的调用速度
 		PrepareStmt: true,
+		//禁用外键
+		// DisableForeignKeyConstraintWhenMigrating: true,
 	})
 
 	// Db.SingularTable(true) //不加s
@@ -56,6 +68,7 @@ func init() {
 
 	// SetConnMaxLifetime 设置了连接可复用的最大时间。
 	sqlDB.SetConnMaxLifetime(time.Hour)
+
 }
 
 //TODO 带判断

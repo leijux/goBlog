@@ -1,17 +1,17 @@
 package user
 
 import (
-	"encoding/json"
+	
 	"time"
 
-	"goBlog/database"
 	"goBlog/database/cache"
 	"goBlog/database/orm"
 	"goBlog/log"
 	"goBlog/models"
 	"goBlog/models/blog"
 	"goBlog/src/common"
-
+	
+	json "github.com/json-iterator/go"
 	"github.com/go-redis/redis/v7"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
@@ -31,18 +31,18 @@ var (
 type User struct {
 	gorm.Model
 	Name      string      `gorm:"size:15;not null"                       `
-	Email     string      `gorm:"not null;unique"                        `
+	Email     string      `gorm:"size:30;not null;unique"                `
 	Password  []byte      `gorm:"type:binary(32);not null"               `
 	Image     string      `gorm:"size:50"                                `
 	Authority int         `                                              `
-	Blogs     []blog.Blog `gorm:"foreignkey:Email;references:Email"       `
+	Blogs     []blog.Blog `gorm:"foreignkey:Email;references:Email"      `
 }
 
 type UserApi struct {
-	Name     string `json:"name"         form:"name"       binding:"required"`
-	Email    string `json:"email"        form:"email"      binding:"required,email"`
-	Password string `json:"password"     form:"password"   binding:"required"`
-	Image    string `json:"image"         form:"image"`
+	Name     string `json:"name"      form:"name"      binding:"required"      `
+	Email    string `json:"email"     form:"email"     binding:"required,email"`
+	Password string `json:"password"  form:"password"  binding:"required"      `
+	Image    string `json:"image"     form:"image"                             `
 }
 
 var _ models.IModels = &User{}
@@ -61,9 +61,13 @@ func (u User) ToUserApi() UserApi {
 }
 
 func (u UserApi) ToUser() *User {
-	dk, err := common.Scrypt(u.Password)
-	if err != nil {
-		log.Fatalln(err)
+	var dk []byte
+	if u.Password != emptyString {
+		var err error
+		dk, err = common.Scrypt(u.Password)
+		if err != nil {
+			log.Fatalln(err)
+		}
 	}
 	return &User{
 		Name:     u.Name,
@@ -90,14 +94,15 @@ func createUser(u *User) (bool, error) {
 
 //DelUser 删除用户 *权限管理
 func (user *User) DelUser() (l int64, err error) {
-	res, err := database.Db.Exec("delete form user where email=?", user.Email)
-	if err != nil {
-		err = errors.Wrap(err, "DelUser err")
-		log.Errorln(err)
-		return
-	}
-	l, err = res.RowsAffected()
-	err = errors.Wrap(err, "DelUser err")
+	// res, err := database.Db.Exec("delete form user where email=?", user.Email)
+	// if err != nil {
+	// 	err = errors.Wrap(err, "DelUser err")
+	// 	log.Errorln(err)
+	// 	return
+	// }
+	// l, err = res.RowsAffected()
+	// err = errors.Wrap(err, "DelUser err")
+	// return
 	return
 }
 
@@ -148,8 +153,21 @@ func userWithCache(email string) (string, bool) {
 }
 
 //GetUsers 得到全部的用户数据
-func (user *User) GetUsers() (users []User, err error) {
+func (user UserApi) GetUsers() (users []User, err error) {
 	return nil, nil
+}
+//用户有多少文章
+func (user UserApi) Xx() (i int64,err error) {
+	u := user.ToUser()
+	//u.ID = 1
+	u.Email = "123@122f213.com"
+	association := orm.Db.Model(&u).Association("Blogs")
+	i=association.Count()
+	err = association.Error
+	if err != nil {
+		return
+	}
+	return
 }
 
 //ToJSON ...

@@ -1,7 +1,7 @@
 package apis
 
 import (
-	"fmt"
+	"goBlog/log"
 	"goBlog/models/login"
 	"goBlog/src/common"
 
@@ -19,14 +19,15 @@ import (
 func EmailCheckApi(c *gin.Context) {
 	email := c.Query("email")
 
-	var login login.Login
+	var login login.LoginApi
 	login.Email = email
-	b := login.EmailCheck()
+	b, err := login.EmailCheck()
 	if !b {
-		msg := fmt.Sprintln("email check err")
+		log.Errorf("%+v", err)
+		const msg = "email check err"
 		common.Rmsg(c, false, msg)
 		return
 	}
-	msg := fmt.Sprintln("email check ok")
+	const msg = "email check ok"
 	common.Rmsg(c, true, msg)
 }

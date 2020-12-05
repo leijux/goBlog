@@ -1,7 +1,7 @@
 {
   "gin": {
     "isDebugMode": true,
-    "open": "http://localhost:8000/",
+    "open": "http://localhost:6060/debug/statsviz/",
     "prot": ":8000"
   },
   "log": {
@@ -16,10 +16,10 @@
     },
     "sqlite": {
       "driverName": "sqlite3",
-      "dataSourceName": "./database/db"
+      "dataSourceName": "./database/db.sqlite3"
     },
     "redis": {
-      "isOpen": true,
+      "isOpen": false,
       "addr": "47.101.147.15:6379",
       "db": 0,
       "password": ""

@@ -1,7 +1,6 @@
 package login
 
 import (
-	"goBlog/database"
 	"goBlog/database/orm"
 	"goBlog/models/user"
 	"goBlog/src/common"
@@ -22,6 +21,10 @@ type LoginApi struct {
 	Pwd   string `form:"pwd"   json:"pwd"   binding:"required"`
 }
 
+func NewLogin() LoginApi {
+	return LoginApi{}
+}
+
 func (l LoginApi) toLogin() Login {
 	dk, _ := common.Scrypt(l.Pwd)
 	return Login{
@@ -33,10 +36,10 @@ func (l LoginApi) toLogin() Login {
 //PwdCheck 验证登入
 func (login *LoginApi) PwdCheck() (b bool, userApi user.UserApi, err error) {
 	l := login.toLogin()
-	u := new(user.User)
+	u := user.User{}
 
 	//err = database.Db.Get(&user, "select * from user where email=? and password=?", login.Email, login.Pwd)
-	err = orm.Db.Where("email = ? and password=?", l.Email, l.Pwd).First(u).Error
+	err = orm.Db.Where("email = ? and password=?", l.Email, l.Pwd).First(&u).Error
 	if err != nil {
 		b = false
 		return
@@ -47,9 +50,14 @@ func (login *LoginApi) PwdCheck() (b bool, userApi user.UserApi, err error) {
 }
 
 //EmailCheck 邮箱验证
-func (login *Login) EmailCheck() (b bool) {
-	var u user.User
-	database.Db.Get(&u, "select email from user where email=? ", login.Email)
+func (login *LoginApi) EmailCheck() (b bool, err error) {
+	u := user.User{}
+	//database.Db.Get(&u, "select email from user where email=? ", login.Email)
+	err = orm.Db.Where("email=?", login.Email).First(&u).Error
+	if err != nil {
+		b = false
+		return
+	}
 	if u.Email == emptyString {
 		b = true
 		return

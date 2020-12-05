@@ -23,6 +23,7 @@ func init() {
 	if open := config.GetBool("database.redis.isOpen"); !open {
 		return
 	}
+	
 	addr := config.GetString("database.redis.addr")
 	pas := config.GetString("database.redis.password")
 	db := config.GetInt("database.redis.db")

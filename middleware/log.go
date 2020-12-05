@@ -21,7 +21,7 @@ func Log() gin.HandlerFunc {
 		reqURI := c.Request.RequestURI       // 请求路由
 		statusCode := c.Writer.Status()      // 状态码
 		clientIP := c.ClientIP()             // 请求IP
-		log.Info("",
+		log.Info("Router",
 			zap.Int("status_code", statusCode),
 			zap.Duration("latencyTime", latencyTime),
 			zap.String("client_ip", clientIP),

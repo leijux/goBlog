@@ -26,6 +26,7 @@ func run(prot string, handler http.Handler) {
 		WriteTimeout:   1 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
+
 	go func() {
 		// 服务连接
 		// if err := srv.ListenAndServe(prot); err != nil && err != fasthttp.ErrConnectionClosed {
@@ -33,7 +34,7 @@ func run(prot string, handler http.Handler) {
 		// }
 
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("listen: %s\n", err)
+			log.Fatal("listen err", zap.Error(err))
 		}
 	}()
 
