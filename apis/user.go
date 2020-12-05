@@ -3,27 +3,29 @@ package apis
 import (
 	"goBlog/log"
 	"goBlog/models/user"
-	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 )
 
 //AddUserAPI 添加用户
-func AddUserAPI(c *gin.Context) {
+func AddUserAPI(c *gin.Context) (code bool, msg string, data interface{}) {
 	u := user.NewUser()
 
 	err := c.Bind(&u)
 	if err != nil {
-		const msg = "shoul bind err"
-		errors.WithMessage(err, msg)
+		const m = "shoul bind err"
+		err = errors.WithMessage(err, msg)
+		msg = err.Error()
 		log.Errorf("%+v ", err)
-		common.Rmsg(c, false, msg)
+		code = false
 		return
 	}
 
-	msg, b := addUserAPI(u)
-	common.Rmsg(c, b, msg)
+	msg, code = addUserAPI(u)
+	data = nil
+	return
+
 }
 
 func addUserAPI(u user.UserApi) (string, bool) {

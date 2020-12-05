@@ -122,8 +122,8 @@ func GetIdentityKey() string {
 }
 
 func RefreshResponse() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		//	authMiddleware.RefreshResponse(c,1,"ss",24 * time.Hour)
-		//authMiddleware.LogoutHandler()
-	}
+
+	return authMiddleware.RefreshHandler
+	//authMiddleware.LogoutHandler()
+
 }

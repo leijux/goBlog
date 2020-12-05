@@ -2,13 +2,22 @@ package middleware
 
 import (
 	"fmt"
+	"goBlog/log"
 
 	"github.com/casbin/casbin"
+	xormadapter "github.com/casbin/xorm-adapter/v2"
 	"github.com/gin-gonic/gin"
+	_ "github.com/go-sql-driver/mysql"
 )
 
-func Authorize(e *casbin.Enforcer) gin.HandlerFunc {
+func Authorize() gin.HandlerFunc {
+	a, err := xormadapter.NewAdapter("mysql", "root:123456@tcp(47.101.147.15:3306)/leiju?parseTime=true", true)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
+	e := casbin.NewEnforcer("./middleware/rbac_models.conf", a)
+	e.LoadPolicy()
 	return func(c *gin.Context) {
 
 		//获取请求的URI

@@ -9,17 +9,16 @@ require (
 	github.com/arl/statsviz v0.2.1
 	github.com/buger/jsonparser v1.0.0
 	github.com/casbin/casbin v1.9.1
+	github.com/casbin/xorm-adapter/v2 v2.1.0
 	github.com/fastly/go-utils v0.0.0-20180712184237-d95a45783239 // indirect
 	github.com/fevin/gracehttp v0.0.3
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/gzip v0.0.3 // indirect
 	github.com/gin-gonic/gin v1.6.3
-	github.com/go-openapi/jsonpointer v0.19.5 // indirect
-	github.com/go-openapi/jsonreference v0.19.5 // indirect
 	github.com/go-openapi/spec v0.19.15 // indirect
-	github.com/go-openapi/swag v0.19.12 // indirect
 	github.com/go-playground/validator/v10 v10.4.1
 	github.com/go-redis/redis/v7 v7.4.0
+	github.com/go-sql-driver/mysql v1.5.0
 	github.com/golang/protobuf v1.4.3 // indirect
 	github.com/golobby/config v1.1.1
 	github.com/google/go-cmp v0.5.4 // indirect
@@ -48,11 +47,9 @@ require (
 	golang.org/x/mod v0.4.0 // indirect
 	golang.org/x/net v0.0.0-20201202161906-c7110b5ffcbb // indirect
 	golang.org/x/sys v0.0.0-20201204225414-ed752295db88 // indirect
-	golang.org/x/text v0.3.4 // indirect
 	golang.org/x/tools v0.0.0-20201204222352-654352759326 // indirect
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gorm.io/driver/mysql v1.0.3
 	gorm.io/driver/sqlite v1.1.4
 	gorm.io/gorm v1.20.8

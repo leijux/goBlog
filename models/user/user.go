@@ -1,7 +1,6 @@
 package user
 
 import (
-	
 	"time"
 
 	"goBlog/database/cache"
@@ -10,9 +9,9 @@ import (
 	"goBlog/models"
 	"goBlog/models/blog"
 	"goBlog/src/common"
-	
-	json "github.com/json-iterator/go"
+
 	"github.com/go-redis/redis/v7"
+	json "github.com/json-iterator/go"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
 )
@@ -127,6 +126,7 @@ func getUser(u *User) error {
 	if res, b := userWithCache(u.Email); b {
 		u.FromJSON(res)
 		log.Infoln("cache read success")
+		return nil
 	}
 	err := orm.Db.Where("email = ?", u.Email).First(&u).Error
 	if err != nil {
@@ -156,13 +156,12 @@ func userWithCache(email string) (string, bool) {
 func (user UserApi) GetUsers() (users []User, err error) {
 	return nil, nil
 }
+
 //用户有多少文章
-func (user UserApi) Xx() (i int64,err error) {
+func (user UserApi) UserBlogNumber() (i int64, err error) {
 	u := user.ToUser()
-	//u.ID = 1
-	u.Email = "123@122f213.com"
 	association := orm.Db.Model(&u).Association("Blogs")
-	i=association.Count()
+	i = association.Count()
 	err = association.Error
 	if err != nil {
 		return

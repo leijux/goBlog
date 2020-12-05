@@ -3,6 +3,7 @@ package v1
 import (
 	"goBlog/apis"
 	"goBlog/middleware"
+	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -14,9 +15,9 @@ func V1(router *gin.Engine) {
 	v1 := router.Group("/v1")
 	{
 		{ //logn
-			v1.POST("/logn", apis.AddUserAPI)          //注册
-			v1.GET("/emailCheck", apis.EmailCheckApi)  //邮箱验证api
-			v1.GET("/login", middleware.LoginHandler()) //登入
+			v1.POST("/logn", common.Handler()(apis.AddUserAPI)) //注册
+			v1.GET("/emailCheck", apis.EmailCheckApi)           //邮箱验证api
+			v1.GET("/login", middleware.LoginHandler())         //登入
 		}
 
 		{ //user
@@ -30,6 +31,7 @@ func V1(router *gin.Engine) {
 
 		{ //验证jwt
 			v1.GET("/jwt", middleware.JwtMiddlewareFunc(), apis.JwtOkAPI) //
+			v1.GET("/jwtRefresh", middleware.RefreshResponse())
 		}
 
 		{ //blog
@@ -37,6 +39,7 @@ func V1(router *gin.Engine) {
 			v1.POST("/blog", middleware.JwtMiddlewareFunc(), apis.AddBlogAPI)
 			//得到文章
 			v1.GET("/blogs", apis.GetBlogsAPI)
+
 			// 获取文章数量
 			v1.GET("/blogSize", apis.BlogSizeAPI)
 			//得到文章排名

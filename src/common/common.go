@@ -34,7 +34,7 @@ func Handler() func(h MyHandler) gin.HandlerFunc {
 	return func(h MyHandler) gin.HandlerFunc {
 		return func(c *gin.Context) {
 			code, msg, data := h(c)
-			rmsg(c, code, msg, data)
+			Rmsg(c, code, msg, data)
 			return
 		}
 	}
