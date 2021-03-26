@@ -1,79 +1,118 @@
 package main
 
 import (
-	"fmt"
+	"crypto/md5"
 	"io"
 	"log"
 	"os"
 	"os/exec"
-	"runtime"
+	"path/filepath"
+	"strings"
+
+	"github.com/pkg/errors"
+	"github.com/spf13/afero"
 )
 
+const (
+	win = "windows"
+	lin = "linux"
+
+	GOOS = win
+)
+
+var AppFs afero.Fs
+
 func main() {
-	// path := "./app"
-	// fileinfo, err := ioutil.ReadDir(path)
-	// if err != nil {
-	// 	log.Fatalln(err)
-	// }
-	// if len(fileinfo) != 0 {
-	// 	for _, v := range fileinfo {
-	// 		filename := v.Name()
-	// 		// if filename == "main.go"||filename=="build.exe"||filename=="__debug_bin" {
-	// 		// 	continue
-	// 		// }
-	// 		if v.IsDir() {
-	// 			err = os.RemoveAll(filepath.Join(path, filename))
-	// 			if err != nil {
-	// 				log.Fatalln(err)
-	// 			}
-	// 		} else {
-	// 			err = os.Remove(filepath.Join(path, filename))
-	// 			if err != nil {
-	// 				log.Fatalln(err)
-	// 			}
-	// 		}
-	// 	}
-	// }
-	//go  build  -tags=jsoniter -o ./build/app/app.exe
+	AppFs = afero.NewOsFs()
 	var err error
-	switch runtime.GOOS {
-	case "linux":
-		err = exec.Command("sh", "go", "build", `-tags=jsoniter`, `-ldflags="-s -w"`, "-o", "./app/app").Run()
-	case "windows":
-		//go build `-tags=jsoniter` -ldflags="-s -w" -o "./build/app/app.exe"
-		err = exec.Command("cmd", "go", "build", `-tags=jsoniter`, `-ldflags="-s -w"`, "-o", "../build/app/app.exe").Run()
-		//err = exec.Command("go", "build", `-ldflags="-s -w"`, "-o", "./build/app.exe").Run()
+	switch GOOS {
+	case lin:
+		err = linuxBuild()
+	case win:
+		err = winBuild()
 	default:
-		err = fmt.Errorf("GOOS err")
+		log.Fatalln("GOOS err")
 	}
 	if err != nil {
-		log.Fatalln(err)
+		log.Printf("%+v", err)
 	}
+	createLog()
+	createConfig()
+}
 
-	// createLog()
-	// createConfig()
+func winBuild() error {
+	gox := exec.Command("gox", "-os", "windows", "-arch", "amd64")
+	err := gox.Run()
+	if err != nil {
+		return errors.Wrap(err, "winBuild")
+	}
+	return nil
+	//strbuf := strings.NewReader(`gox -os "windows" -arch amd64`)
+	//pw := exec.Command("powershell")
+	//pw.Stdin = strbuf
+	//if err := pw.Run(); err != nil {
+	//	return errors.Wrap(err, "win build err")
+	//}
+	//return nil
+}
+
+func linuxBuild() error {
+	strbuf := strings.NewReader(`gox -os "linux" -arch amd64`)
+	pw := exec.Command("powershell")
+	pw.Stdin = strbuf
+	if err := pw.Run(); err != nil {
+		return errors.Wrap(err, "linux build err")
+	}
+	return nil
 }
 
 func createLog() {
-	err := os.MkdirAll("./app/log/gin_log", os.ModePerm)
+	_, err := AppFs.Stat("./build/app/log/gin_log/")
 	if err != nil {
-		log.Fatalln(err)
-	}
-	_, err = os.Create("./app/log/gin_log/system.log")
-	if err != nil {
-		log.Fatalln(err)
+		if errors.Is(err, os.ErrNotExist) {
+			_ = AppFs.MkdirAll("./build/app/log/gin_log/", os.ModePerm)
+		}
 	}
 }
 
+const configPath = "./build/app/config/"
+
 func createConfig() {
-	file, err := os.OpenFile("../config/config.json", 2, 0666)
+	_, err := AppFs.Stat(filepath.Join(configPath, "config.json"))
 	if err != nil {
-		log.Fatalln(err)
+		if errors.Is(err, os.ErrNotExist) {
+			_ = AppFs.MkdirAll(configPath, os.ModePerm)
+			file, err := AppFs.Create(filepath.Join(configPath, "config.json"))
+			if err != nil {
+				log.Println(err)
+			}
+			defer file.Close()
+			filejson, err := AppFs.Open("./config/config.json")
+			if err != nil {
+				log.Println(err)
+			}
+			defer filejson.Close()
+			_, _ = io.Copy(file, filejson)
+			return
+		}
 	}
-	os.Mkdir("./app/config", os.ModePerm)
-	json, err := os.Create("./app/config/config.json")
+
+	file, err := AppFs.Open(filepath.Join(configPath, "config.json"))
 	if err != nil {
-		log.Fatalln(err)
+		log.Println(err)
 	}
-	io.Copy(json, file)
+	defer file.Close()
+	filejson, err := AppFs.Open("./config/config.json")
+	if err != nil {
+		log.Println(err)
+	}
+	defer filejson.Close()
+	if getMd5(file) != getMd5(filejson) {
+		_, _ = io.Copy(file, filejson)
+	}
+}
+func getMd5(file io.Reader) string {
+	md5h := md5.New()
+	_, _ = io.Copy(md5h, file)
+	return string(md5h.Sum(nil)) //md5
 }

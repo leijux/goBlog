@@ -2,10 +2,11 @@ package router
 
 import (
 	"goBlog/apis"
+	"goBlog/log"
 	"goBlog/middleware"
-	v1 "goBlog/router/v1"
+	r "goBlog/router/v1"
 	"goBlog/src/common"
-	"goBlog/validator/vuser"
+	validator2 "goBlog/validator"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
@@ -13,14 +14,17 @@ import (
 )
 
 func InitRouter(router *gin.Engine) {
-	router.Use(gin.Recovery(), middleware.Log(), middleware.Cors(), middleware.Authorize())
+	router.Use(gin.Recovery(), middleware.Log(), middleware.Cors())
 	router.Static("/files", "./web")
 	router.GET("/", common.Handler()(apis.Index))
 
 	//添加自定义 tag
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
-		v.RegisterValidation("vuserName", vuser.VuserName)
+		err := v.RegisterValidation("vuserName", validator2.VUserName)
+		if err != nil {
+			log.Fatalln(err)
+		}
 	}
 
-	v1.V1(router)
+	r.V1(router)
 }

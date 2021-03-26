@@ -1,12 +1,11 @@
 package apis
 
 import (
+	"goBlog/models"
 	"strconv"
 
 	"goBlog/log"
 	"goBlog/middleware"
-	"goBlog/models/blog"
-	"goBlog/models/user"
 	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +15,7 @@ import (
 
 //AddBlogAPI 添加博客
 func AddBlogAPI(c *gin.Context) {
-	b := blog.NewBlog()
+	b := models.NewBlog()
 	err := c.Bind(&b)
 	if err != nil {
 		const msg string = "should bind err"
@@ -25,7 +24,7 @@ func AddBlogAPI(c *gin.Context) {
 		return
 	}
 	u, _ := c.Get(middleware.GetIdentityKey()) //得到用户信息
-	if v, ok := u.(user.UserApi); ok {
+	if v, ok := u.(models.UserApi); ok {
 		bol, err := addBlogAPI(v, b)
 		if err != nil {
 			log.Errorf("%+v", err)
@@ -38,7 +37,7 @@ func AddBlogAPI(c *gin.Context) {
 	}
 }
 
-func addBlogAPI(v user.UserApi, b blog.BlogApi) (bool, error) {
+func addBlogAPI(v models.UserApi, b models.BlogApi) (bool, error) {
 	if v.Email == b.Email {
 		bol, err := b.CreateBlog()
 		if err != nil {
@@ -102,14 +101,14 @@ func GetBlogsAPI(c *gin.Context) {
 	common.Rmsg(c, true, "", bs)
 }
 
-func getBlogs(page, pageSize int) ([]blog.BlogApi, error) {
-	b := blog.NewBlog()
+func getBlogs(page, pageSize int) ([]models.BlogApi, error) {
+	b := models.NewBlog()
 	bs, err := b.GetBlogs(page, pageSize)
 	return bs, err
 }
 
-func getAuthoeBlogs(email string, page, pageSize int) ([]blog.BlogApi, error) {
-	b := blog.NewBlog()
+func getAuthoeBlogs(email string, page, pageSize int) ([]models.BlogApi, error) {
+	b := models.NewBlog()
 	b.Email = email
 	bs, err := b.AuthoeToBlogs(page, pageSize)
 	return bs, err
@@ -122,7 +121,7 @@ func UpGlog() {
 
 //BlogSizeAPI 得到文章数量
 func BlogSizeAPI(c *gin.Context) {
-	i, err := blog.Count()
+	i, err := models.Count()
 	if err != nil {
 		log.Errorf("%+v", err)
 		common.Rmsg(c, false, "")
@@ -133,7 +132,7 @@ func BlogSizeAPI(c *gin.Context) {
 
 //GetTopAPI 得到to排名
 func GetTopAPI(c *gin.Context) {
-	bs, err := blog.GetTop()
+	bs, err := models.GetTop()
 	if err != nil {
 		log.Errorf("%+v", err)
 		common.Rmsg(c, false, "")

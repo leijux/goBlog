@@ -1,28 +1,28 @@
 {
-  "gin": {
-    "isDebugMode": true,
-    "open": "http://localhost:6060/debug/statsviz/",
-    "prot": ":8000"
-  },
-  "log": {
-    "logFilePath": "./log/gin_log",
-    "logFileName": "log"
-  },
   "database": {
     "enable": "mysql",
     "mysql": {
-      "driverName": "mysql",
-      "dataSourceName": "root:123456@tcp(47.101.147.15:3306)/leiju?parseTime=true"
-    },
-    "sqlite": {
-      "driverName": "sqlite3",
-      "dataSourceName": "./database/db.sqlite3"
+      "datasourcename": "leiju:45828356@tcp(192.168.31.105)/leiju?parseTime=true&charset=utf8",
+      "drivername": "mysql"
     },
     "redis": {
-      "isOpen": false,
       "addr": "47.101.147.15:6379",
       "db": 0,
+      "isopen": false,
       "password": ""
+    },
+    "sqlite": {
+      "datasourcename": "./database/db.sqlite3",
+      "drivername": "sqlite3"
     }
+  },
+  "gin": {
+    "mode": "debug",
+    "open": "http://localhost:6060/debug/statsviz/",
+    "prot": ":8080"
+  },
+  "log": {
+    "logfilename": "log",
+    "logfilepath": "./log/gin_log"
   }
 }

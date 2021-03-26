@@ -5,7 +5,6 @@ import (
 
 	"goBlog/config"
 	"goBlog/log"
-	"goBlog/models"
 
 	"github.com/go-redis/redis/v7"
 	"github.com/pkg/errors"
@@ -18,12 +17,17 @@ var redisdb *redis.Client
 //ErrRedisOff 数据库关闭
 var ErrRedisOff = errors.New("redis off")
 
+type IModels interface {
+	ToJSON() string
+	FromJSON(string)
+}
+
 // 初始化连接
 func init() {
 	if open := config.GetBool("database.redis.isOpen"); !open {
 		return
 	}
-	
+
 	addr := config.GetString("database.redis.addr")
 	pas := config.GetString("database.redis.password")
 	db := config.GetInt("database.redis.db")
@@ -60,7 +64,7 @@ func Get(key string) (value string, err error) {
 }
 
 //Set 反序列化对象
-func Set(key string, value models.IModels, t time.Duration) (err error) {
+func Set(key string, value IModels, t time.Duration) (err error) {
 	if redisdb == nil {
 		err = ErrRedisOff
 		return
@@ -73,6 +77,6 @@ func Set(key string, value models.IModels, t time.Duration) (err error) {
 //Close 关闭链接对象
 func Close() {
 	if redisdb != nil {
-		redisdb.Close()
+		_ = redisdb.Close()
 	}
 }

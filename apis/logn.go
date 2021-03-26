@@ -2,7 +2,7 @@ package apis
 
 import (
 	"goBlog/log"
-	"goBlog/models/login"
+	"goBlog/models"
 	"goBlog/src/common"
 
 	"github.com/gin-gonic/gin"
@@ -19,11 +19,11 @@ import (
 func EmailCheckApi(c *gin.Context) {
 	email := c.Query("email")
 
-	var login login.LoginApi
-	login.Email = email
-	b, err := login.EmailCheck()
+	var l models.LoginApi
+	l.Email = email
+	b, err := l.EmailCheck()
 	if !b {
-		log.Errorf("%+v", err)
+		log.Errorln(err)
 		const msg = "email check err"
 		common.Rmsg(c, false, msg)
 		return

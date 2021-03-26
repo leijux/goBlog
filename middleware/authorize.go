@@ -17,7 +17,7 @@ func Authorize() gin.HandlerFunc {
 	}
 
 	e := casbin.NewEnforcer("./middleware/rbac_models.conf", a)
-	e.LoadPolicy()
+	_ = e.LoadPolicy()
 	return func(c *gin.Context) {
 
 		//获取请求的URI

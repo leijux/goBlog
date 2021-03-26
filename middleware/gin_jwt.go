@@ -1,15 +1,13 @@
 package middleware
 
 import (
+	"goBlog/models"
 	"time"
-
-	"goBlog/log"
-	"goBlog/models/login"
-	"goBlog/models/user"
 
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"goBlog/log"
 )
 
 const identityKey = "Email"
@@ -26,7 +24,7 @@ func init() {
 		MaxRefresh:  24 * time.Hour,
 		IdentityKey: identityKey,
 		PayloadFunc: func(data interface{}) jwt.MapClaims { //负载
-			if v, ok := data.(user.UserApi); ok {
+			if v, ok := data.(models.UserApi); ok {
 				return jwt.MapClaims{
 					identityKey: v.Email,
 				}
@@ -35,12 +33,12 @@ func init() {
 		},
 		IdentityHandler: func(c *gin.Context) interface{} { //解析负载
 			claims := jwt.ExtractClaims(c)
-			return user.UserApi{
+			return models.UserApi{
 				Email: claims[identityKey].(string),
 			}
 		},
 		Authenticator: func(c *gin.Context) (interface{}, error) { //登入
-			var loginVals login.LoginApi
+			var loginVals models.LoginApi
 			if err := c.ShouldBind(&loginVals); err != nil {
 				return "", jwt.ErrMissingLoginValues
 			}
@@ -122,8 +120,6 @@ func GetIdentityKey() string {
 }
 
 func RefreshResponse() gin.HandlerFunc {
-
 	return authMiddleware.RefreshHandler
 	//authMiddleware.LogoutHandler()
-
 }

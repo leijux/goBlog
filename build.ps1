@@ -1,1 +1,0 @@
-go build `-tags=jsoniter` -ldflags="-s -w" -o "./build/app/app.exe"

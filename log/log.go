@@ -86,8 +86,8 @@ func Errorf(template string, args ...interface{}) {
 	sugar.Errorf(template, args...)
 }
 
-func Errorln(args ...interface{}) {
-	sugar.Error(args...)
+func Errorln(args interface{}) {
+	sugar.Errorf("%+v\n", args)
 }
 
 func Fatal(msg string, fields ...zapcore.Field) {

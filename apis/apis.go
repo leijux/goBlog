@@ -1,9 +1,8 @@
 package apis
 
 import (
-	"goBlog/models/blog"
-
 	"github.com/gin-gonic/gin"
+	"goBlog/models"
 )
 
 // @Summary 测试index
@@ -15,7 +14,8 @@ import (
 func Index(c *gin.Context) (bool, string, interface{}) {
 	return index(c)
 }
+
 func index(c *gin.Context) (bool, string, interface{}) {
-	i, _ := blog.Count()
+	i, _ := models.Count()
 	return true, "test success!", i
 }

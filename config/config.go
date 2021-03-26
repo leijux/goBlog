@@ -1,12 +1,11 @@
 package config
 
 import (
+	"fmt"
+	"github.com/fsnotify/fsnotify"
+	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
 	"log"
-	"sync"
-
-	"github.com/golobby/config"
-	"github.com/golobby/config/feeder"
-	"github.com/pkg/errors"
 )
 
 const (
@@ -17,85 +16,45 @@ const (
 )
 
 var (
-	ErrOpenFile = errors.New("open err")
 
 	//JSONPath 文件路径
-	JSONPath = "./config/config.json"
+	JSONPath = "./config/"
 )
 
-//cfg 配置文件对象
-var cfg *config.Config
-var once sync.Once
-
-// func Init(path string) {
-// 	once.Do(func() {
-// 		configInit(path)
-// 	})
-// }
-
-// func configInit(path string) {
-// 	var err error
-// 	cfg, err = config.New(config.Options{
-// 		Feeder: feeder.Json{Path: path},
-// 	})
-// 	if err != nil {
-// 		log.Fatalf("%+v", errors.Wrap(err, ErrOpenFile.Error()))
-// 	}
-// }
 func init() {
-	var err error
-	cfg, err = config.New(config.Options{
-		Feeder: feeder.Json{Path: JSONPath},
-	})
-	if err != nil {
-		log.Fatalf("%+v", errors.Wrap(err, ErrOpenFile.Error()))
+	if gin.Mode() == gin.DebugMode {
+		JSONPath = "E:\\OneDrive\\learning\\program\\Go\\myGoProjects\\goBlog\\config"
 	}
+	viper.SetConfigName("config") // name of config file (without extension)
+	viper.SetConfigType("json")   // REQUIRED if the config file does not have the extension in the name
+	viper.AddConfigPath(JSONPath) // optionally look for config in the working directory
+	err := viper.ReadInConfig()   // Find and read the config file
+	if err != nil {               // Handle errors reading the config file
+		log.Fatalf("Fatal error config file: %s \n", err)
+	}
+	_ = viper.WriteConfig()
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		fmt.Printf("Config file:%s Op:%s\n", e.Name, e.Op)
+	})
 }
 
 //GetString 返回字符串
 func GetString(key string) string {
-	j, err := cfg.GetString(key)
-	if err != nil {
-		log.Fatalln(err)
-		return ""
-	}
-	return j
+	return viper.GetString(key)
 }
 
 //GetBool 返回bool
 func GetBool(key string) bool {
-	j, err := cfg.GetBool(key)
-	if err != nil {
-		log.Fatalln(err)
-		return false
-	}
-	return j
+	return viper.GetBool(key)
 }
 
 //GetInt 返回int
 func GetInt(key string) int {
-	j, err := cfg.GetInt(key)
-	if j == 0 {
-		return j
-	}
-	if err != nil {
-		log.Fatalln(err)
-		return 0
-	}
-	return j
-}
-
-//Get 获取数据
-func Get(key string) (value interface{}) {
-	value, err := cfg.Get(key)
-	if err != nil {
-		log.Fatalln(err)
-		return
-	}
-	return
+	return viper.GetInt(key)
 }
 
 //Set 写入值 写入内存不写入文件
-func Set(key string, value interface{}) {
-	cfg.Set(key, value)
+func Set(key string, value interface{}) error {
+	viper.Set(key, value)
+	return viper.WriteConfig()
 }

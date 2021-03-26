@@ -2,7 +2,7 @@ package apis
 
 import (
 	"goBlog/middleware"
-	"goBlog/models/user"
+	"goBlog/models"
 	"goBlog/src/common"
 
 	//jwt "github.com/appleboy/gin-jwt/v2"
@@ -23,7 +23,7 @@ func JwtToUserAPI(c *gin.Context) {
 
 //JwtOkAPI 测试jwt功能
 func JwtOkAPI(c *gin.Context) {
-	u := new(user.UserApi)
+	u := new(models.UserApi)
 	u.Email = "leiju@outlook.com"
 	//u.GetUser()
 	msg := "JwtOK"
